@@ -1,9 +1,10 @@
 package com.server.tictactoe.persistence.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
- * Created by klausvillaca on 1/13/16.
+ * Created by klausvillaca on 1/15/16.
  */
 @Entity
 @Table(name = "user", schema = "tictactoe_schema")
@@ -14,9 +15,12 @@ public class UserEntity {
     private Integer statsLoses;
     private Integer statsTied;
     private String lastDatePlayed;
+    private List<GamesEntity> games;
 
     @Id
-    @Column(name = "iduser")
+    @Column(name = "iduser", nullable = false)
+    @SequenceGenerator(name="USER_PK_GENERATOR", sequenceName="USERSEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_PK_GENERATOR")
     public int getIduser() {
         return iduser;
     }
@@ -26,7 +30,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "user_name")
+    @Column(name = "user_name", nullable = true, length = 60)
     public String getUserName() {
         return userName;
     }
@@ -36,7 +40,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "stats_wins")
+    @Column(name = "stats_wins", nullable = true)
     public Integer getStatsWins() {
         return statsWins;
     }
@@ -46,7 +50,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "stats_loses")
+    @Column(name = "stats_loses", nullable = true)
     public Integer getStatsLoses() {
         return statsLoses;
     }
@@ -56,7 +60,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "stats_tied")
+    @Column(name = "stats_tied", nullable = true)
     public Integer getStatsTied() {
         return statsTied;
     }
@@ -66,7 +70,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "last_date_played")
+    @Column(name = "last_date_played", nullable = true, length = 10)
     public String getLastDatePlayed() {
         return lastDatePlayed;
     }
@@ -102,5 +106,14 @@ public class UserEntity {
         result = 31 * result + (statsTied != null ? statsTied.hashCode() : 0);
         result = 31 * result + (lastDatePlayed != null ? lastDatePlayed.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public List<GamesEntity> getGames() {
+        return games;
+    }
+
+    public void setGames(List<GamesEntity> games) {
+        this.games = games;
     }
 }

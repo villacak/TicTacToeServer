@@ -1,19 +1,33 @@
 package com.server.tictactoe.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 /**
- * Created by klausvillaca on 1/13/16.
+ * Created by klausvillaca on 1/15/16.
  */
 @Entity
 @Table(name = "play", schema = "tictactoe_schema")
 public class PlayEntity {
+    private GamesEntity game;
     private int playid;
-    private Integer gameId;
     private Integer position;
 
+    @JsonBackReference
+    @ManyToOne
+    public GamesEntity getGame() {
+        return game;
+    }
+
+    public void setGame(GamesEntity game) {
+        this.game = game;
+    }
+
     @Id
-    @Column(name = "playid")
+    @Column(name = "playid", nullable = false)
+    @SequenceGenerator(name="PLAY_PK_GENERATOR", sequenceName="PLAYSEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PLAY_PK_GENERATOR")
     public int getPlayid() {
         return playid;
     }
@@ -23,17 +37,7 @@ public class PlayEntity {
     }
 
     @Basic
-    @Column(name = "game_id")
-    public Integer getGameId() {
-        return gameId;
-    }
-
-    public void setGameId(Integer gameId) {
-        this.gameId = gameId;
-    }
-
-    @Basic
-    @Column(name = "position")
+    @Column(name = "position", nullable = true)
     public Integer getPosition() {
         return position;
     }
@@ -50,7 +54,6 @@ public class PlayEntity {
         PlayEntity that = (PlayEntity) o;
 
         if (playid != that.playid) return false;
-        if (gameId != null ? !gameId.equals(that.gameId) : that.gameId != null) return false;
         if (position != null ? !position.equals(that.position) : that.position != null) return false;
 
         return true;
@@ -59,7 +62,6 @@ public class PlayEntity {
     @Override
     public int hashCode() {
         int result = playid;
-        result = 31 * result + (gameId != null ? gameId.hashCode() : 0);
         result = 31 * result + (position != null ? position.hashCode() : 0);
         return result;
     }

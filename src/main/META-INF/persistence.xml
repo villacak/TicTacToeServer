@@ -3,6 +3,7 @@
     <persistence-unit name="ttt_pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <non-jta-data-source>java:/comp/env/jdbc/ttt_ds</non-jta-data-source>
+
         <class>com.server.tictactoe.persistence.entities.GamesEntity</class>
         <class>com.server.tictactoe.persistence.entities.PlayEntity</class>
         <class>com.server.tictactoe.persistence.entities.UserEntity</class>

@@ -1,20 +1,46 @@
 package com.server.tictactoe.persistence.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
- * Created by klausvillaca on 1/13/16.
+ * Created by klausvillaca on 1/15/16.
  */
 @Entity
-@Table(name = "games", schema = "tictactoe_schema")
+@Table(name = "games", schema = "tictactoe_schema", catalog = "")
 public class GamesEntity {
+    private UserEntity user;
+    private List<PlayEntity> plays;
     private int idgames;
-    private Integer playerX;
-    private Integer playerY;
+    private String playerXOrO;
     private String wonXOrY;
 
+    @JsonBackReference
+    @ManyToOne
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "game")
+    public List<PlayEntity> getPlays() {
+        return plays;
+    }
+
+    public void setPlays(List<PlayEntity> plays) {
+        this.plays = plays;
+    }
+
     @Id
-    @Column(name = "idgames")
+    @Column(name = "idgames", nullable = false)
+    @SequenceGenerator(name="GAMES_PK_GENERATOR", sequenceName="GAMESSEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="GAMES_PK_GENERATOR")
     public int getIdgames() {
         return idgames;
     }
@@ -24,27 +50,17 @@ public class GamesEntity {
     }
 
     @Basic
-    @Column(name = "player_x")
-    public Integer getPlayerX() {
-        return playerX;
+    @Column(name = "player_x_or_o", nullable = true, length = 1)
+    public String getPlayerXOrO() {
+        return playerXOrO;
     }
 
-    public void setPlayerX(Integer playerX) {
-        this.playerX = playerX;
-    }
-
-    @Basic
-    @Column(name = "player_y")
-    public Integer getPlayerY() {
-        return playerY;
-    }
-
-    public void setPlayerY(Integer playerY) {
-        this.playerY = playerY;
+    public void setPlayerXOrO(String playerXOrO) {
+        this.playerXOrO = playerXOrO;
     }
 
     @Basic
-    @Column(name = "won_x_or_y")
+    @Column(name = "won_x_or_y", nullable = true, length = 1)
     public String getWonXOrY() {
         return wonXOrY;
     }
@@ -61,8 +77,7 @@ public class GamesEntity {
         GamesEntity that = (GamesEntity) o;
 
         if (idgames != that.idgames) return false;
-        if (playerX != null ? !playerX.equals(that.playerX) : that.playerX != null) return false;
-        if (playerY != null ? !playerY.equals(that.playerY) : that.playerY != null) return false;
+        if (playerXOrO != null ? !playerXOrO.equals(that.playerXOrO) : that.playerXOrO != null) return false;
         if (wonXOrY != null ? !wonXOrY.equals(that.wonXOrY) : that.wonXOrY != null) return false;
 
         return true;
@@ -71,8 +86,7 @@ public class GamesEntity {
     @Override
     public int hashCode() {
         int result = idgames;
-        result = 31 * result + (playerX != null ? playerX.hashCode() : 0);
-        result = 31 * result + (playerY != null ? playerY.hashCode() : 0);
+        result = 31 * result + (playerXOrO != null ? playerXOrO.hashCode() : 0);
         result = 31 * result + (wonXOrY != null ? wonXOrY.hashCode() : 0);
         return result;
     }
