@@ -8,6 +8,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "user", schema = "tictactoe_schema")
+@NamedQuery(name="UserEntity.findAll", query="SELECT c FROM UserEntity c")
 public class UserEntity {
     private int iduser;
     private String userName;

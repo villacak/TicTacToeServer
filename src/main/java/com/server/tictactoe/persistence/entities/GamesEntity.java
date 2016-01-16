@@ -9,7 +9,8 @@ import java.util.List;
  * Created by klausvillaca on 1/15/16.
  */
 @Entity
-@Table(name = "games", schema = "tictactoe_schema", catalog = "")
+@Table(name = "games", schema = "tictactoe_schema")
+@NamedQuery(name="GamesEntity.findAll", query="SELECT c FROM GamesEntity c")
 public class GamesEntity {
     private UserEntity user;
     private List<PlayEntity> plays;
