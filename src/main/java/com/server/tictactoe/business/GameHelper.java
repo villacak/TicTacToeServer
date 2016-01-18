@@ -8,12 +8,20 @@ import com.server.tictactoe.utils.DateUtils;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by klausvillaca on 1/17/16.
  */
 public class GameHelper {
 
+    /**
+     * Create a new game
+     * @param userName
+     * @param selection
+     * @return
+     * @throws Exception
+     */
     public Response createGame(final String userName, final String selection) throws Exception {
         Response respToReturn = null;
         final UserHelper userHelper = new UserHelper();
@@ -38,18 +46,19 @@ public class GameHelper {
     }
 
 
+    public Response checkGame(final Integer gameId, final String selection, final String position) throws Exception {
+        Response respToReturn = null;
+        final GamesDAO gamesDAO = new GamesDAO();
+//        final List<GamesEntity> gamesEntity = gamesDAO.findById(gameId);
+
+        return respToReturn;
+    }
+
+
     private GamesEntity retrieveTheGameIfExist(final int gameId) throws Exception {
-        GamesEntity game = null;
-        final GamesEntity gamesEntity = new GamesEntity();
-
-
-        return game;
+        final GamesDAO gamesDAO = new GamesDAO();
+        final GamesEntity gamesEntity = gamesDAO.findById(gameId);
+        return gamesEntity;
     }
 
-    private GamesEntity retrieveTheGameId(final String userName) throws Exception {
-        GamesEntity game = null;
-
-
-        return game;
-    }
 }
