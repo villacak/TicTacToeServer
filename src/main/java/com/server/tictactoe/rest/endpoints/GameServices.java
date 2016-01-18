@@ -1,8 +1,8 @@
 package com.server.tictactoe.rest.endpoints;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import com.server.tictactoe.Constants;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 /**
@@ -12,5 +12,79 @@ import javax.ws.rs.core.Response;
 @Path("/game/v1/")
 public class GameServices {
 
+    /**
+     * Create a new game
+     * @param name
+     * @return
+     */
+    @PUT
+    @Path("/create/{userName}")
+    public Response createGame(@PathParam("name") final String name,
+                               @QueryParam("selection") final String selection) {
+        Response resp = null;
+        try {
+            if ((name != null && name.equals(Constants.EMPTY)) &&
+                (selection != null && selection.equals(Constants.EMPTY))) {
 
+            } else {
+
+            }
+        } catch (Exception e) {
+            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        return resp;
+    }
+
+
+    /**
+     * Create a new play
+     * @param selection
+     * @param position
+     * @return
+     */
+    @PUT
+    @Path("/play")
+    public Response gamePlay(@QueryParam("selection") final String selection,
+                             @QueryParam("position") final String position) {
+        Response resp = null;
+        try {
+            if ((selection != null && !selection.equals(Constants.EMPTY)) &&
+                (position != null && !position.equals(Constants.EMPTY))) {
+
+            } else {
+
+            }
+        } catch (Exception e) {
+            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        return resp;
+    }
+
+
+    /**
+     * Check and retrieve if the other player has played
+     * @param gameId
+     * @param selection
+     * @param position
+     * @return
+     */
+    @GET
+    @Path("/check")
+    public Response checkPlay(@QueryParam("gameId") final int gameId,
+                              @QueryParam("selection") final String selection,
+                              @QueryParam("position") final String position) {
+        Response resp = null;
+        try {
+            if (gameId != 0 &&
+               (selection != null && !selection.equals(Constants.EMPTY)) &&
+               (position != null && !position.equals(Constants.EMPTY))) {
+
+            } else {
+
+            }
+        } catch (Exception e) {
+            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        return resp;
+    }
 }

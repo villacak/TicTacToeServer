@@ -23,7 +23,7 @@ public class UserServices {
     public Response userDetails(@PathParam("name") final String name) {
         Response resp = null;
         try {
-            if (name != null && name != Constants.EMPTY) {
+            if (name != null && !name.equals(Constants.EMPTY)) {
                 final UserHelper userHelper = new UserHelper();
                 resp = userHelper.createUser(name);
             } else {
@@ -46,7 +46,7 @@ public class UserServices {
     public Response retrieveUser(@PathParam("name") final String name) {
         Response resp = null;
         try {
-            if (name != null && name != Constants.EMPTY) {
+            if (name != null && !name.equals(Constants.EMPTY)) {
                 final UserHelper userHelper = new UserHelper();
                 resp = userHelper.retrieveUser(name);
             } else {
@@ -64,7 +64,7 @@ public class UserServices {
     public Response deleteUser(@PathParam("name") final String name) {
         Response resp = null;
         try {
-            if (name != null && name != Constants.EMPTY) {
+            if (name != null && !name.equals(Constants.EMPTY)) {
                 final UserHelper userHelper = new UserHelper();
                 resp = userHelper.deleteUser(name);
             } else {
