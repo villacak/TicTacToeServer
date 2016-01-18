@@ -19,6 +19,7 @@ public class GameServices {
      */
     @PUT
     @Path("/create/{userName}")
+    @Produces("application/json")
     public Response createGame(@PathParam("name") final String name,
                                @QueryParam("selection") final String selection) {
         Response resp = null;
@@ -44,6 +45,7 @@ public class GameServices {
      */
     @PUT
     @Path("/play")
+    @Produces("application/json")
     public Response gamePlay(@QueryParam("selection") final String selection,
                              @QueryParam("position") final String position) {
         Response resp = null;
@@ -70,6 +72,7 @@ public class GameServices {
      */
     @GET
     @Path("/check")
+    @Produces("application/json")
     public Response checkPlay(@QueryParam("gameId") final int gameId,
                               @QueryParam("selection") final String selection,
                               @QueryParam("position") final String position) {

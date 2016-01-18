@@ -4,6 +4,7 @@ import com.server.tictactoe.Constants;
 import com.server.tictactoe.persistence.daos.UserDAO;
 import com.server.tictactoe.persistence.entities.UserEntity;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class UserHelper {
             userEntity.setUserName(name);
 
             final UserDAO dao = new UserDAO();
-            dao.save(userEntity);
+            userEntity.setIduser(dao.save(userEntity));
 
-            respReturn = Response.ok().build();
+            respReturn = Response.ok(userEntity, MediaType.APPLICATION_JSON).build();
         } else {
             respReturn = Response.status(Response.Status.CONFLICT).build();
         }
@@ -49,7 +50,7 @@ public class UserHelper {
         Response respToReturn = null;
         final UserEntity tempUser = retrieveUserIfAlreadyExist(name);
         if (tempUser != null) {
-            respToReturn = Response.ok().entity(tempUser).build();
+            respToReturn = Response.ok(tempUser, MediaType.APPLICATION_JSON).build();
         } else {
             respToReturn = Response.status(Response.Status.NO_CONTENT).build();
         }

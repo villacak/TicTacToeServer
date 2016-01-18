@@ -4,6 +4,7 @@ import com.server.tictactoe.Constants;
 import com.server.tictactoe.business.UserHelper;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -20,6 +21,7 @@ public class UserServices {
      */
     @PUT
     @Path("/create/{name}")
+    @Produces("application/json")
     public Response userDetails(@PathParam("name") final String name) {
         Response resp = null;
         try {
@@ -43,6 +45,7 @@ public class UserServices {
      */
     @GET
     @Path("/retrieve/{name}")
+    @Produces("application/json")
     public Response retrieveUser(@PathParam("name") final String name) {
         Response resp = null;
         try {
@@ -61,6 +64,7 @@ public class UserServices {
 
     @DELETE
     @Path("/delete/{name}")
+    @Produces("application/json")
     public Response deleteUser(@PathParam("name") final String name) {
         Response resp = null;
         try {

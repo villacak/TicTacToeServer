@@ -54,15 +54,19 @@ public class UserDAO {
      *             when the operation fails
      */
 
-    public void save(UserEntity entity) {
+    public int save(UserEntity entity) {
         emHelper.log("saving User instance", Level.INFO, null);
+        int idToReturn = 0;
         try {
             getEntityManager().persist(entity);
+            getEntityManager().flush();
+            idToReturn = entity.getIduser();
             emHelper.log("save successful", Level.INFO, null);
         } catch (RuntimeException re) {
             emHelper.log("save failed", Level.SEVERE, re);
             throw re;
         }
+        return idToReturn;
     }
 
     /**

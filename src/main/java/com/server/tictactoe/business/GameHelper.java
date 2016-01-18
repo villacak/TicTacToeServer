@@ -6,6 +6,7 @@ import com.server.tictactoe.persistence.entities.GamesEntity;
 import com.server.tictactoe.persistence.entities.UserEntity;
 import com.server.tictactoe.utils.DateUtils;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -27,7 +28,9 @@ public class GameHelper {
             gamesEntity.setUser(userEntity);
 
             final GamesDAO gamesDAO = new GamesDAO();
-            gamesDAO.save(gamesEntity);
+            gamesEntity.setIdgames(gamesDAO.save(gamesEntity));
+
+            respToReturn = Response.ok(gamesEntity, MediaType.APPLICATION_JSON).build();
         } else {
             respToReturn = Response.status(Response.Status.NO_CONTENT).build();
         }
@@ -37,6 +40,8 @@ public class GameHelper {
 
     private GamesEntity retrieveTheGameIfExist(final int gameId) throws Exception {
         GamesEntity game = null;
+        final GamesEntity gamesEntity = new GamesEntity();
+
 
         return game;
     }
