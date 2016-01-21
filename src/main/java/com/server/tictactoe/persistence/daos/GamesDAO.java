@@ -1,10 +1,12 @@
 package com.server.tictactoe.persistence.daos;
 
+import com.server.tictactoe.Constants;
 import com.server.tictactoe.persistence.entities.GamesEntity;
 import com.server.tictactoe.persistence.helper.EntityManagerHelper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -13,8 +15,9 @@ import java.util.logging.Level;
  */
 public class GamesDAO {
 
-    public static final String ID = "idgames";
-    public static final String WON = "wonXOrY";
+    private static final String ID = "idgames";
+    private static final String WON = "wonXOrY";
+    private static final String GAME = "game";
 
 
     private EntityManagerHelper emHelper;
@@ -22,12 +25,6 @@ public class GamesDAO {
     public GamesDAO() {
         emHelper = new EntityManagerHelper();
     }
-
-    // Just for tests
-    public GamesDAO(EntityManagerHelper emHelper) {
-        this.emHelper = emHelper;
-    }
-
 
     private EntityManager getEntityManager() {
         return emHelper.getEntityManager();
@@ -124,27 +121,29 @@ public class GamesDAO {
      * @throws RuntimeException
      *             if the operation fails
      */
-    public GamesEntity update(GamesEntity entity) {
+    public GamesEntity update(final GamesEntity entity) {
         emHelper.log("updating User instance", Level.INFO, null);
+        final GamesEntity result;
         try {
-            GamesEntity result = getEntityManager().merge(entity);
+            result = getEntityManager().merge(entity);
             emHelper.log("update successful", Level.INFO, null);
-            return result;
         } catch (RuntimeException re) {
             emHelper.log("update failed", Level.SEVERE, re);
             throw re;
         }
+        return result;
     }
 
-    public GamesEntity findById(Integer id) {
+    public GamesEntity findById(final int id) {
         emHelper.log("finding User instance with id: " + id, Level.INFO, null);
+        final GamesEntity instance;
         try {
-            GamesEntity instance = getEntityManager().find(GamesEntity.class, id);
-            return instance;
+            instance = getEntityManager().find(GamesEntity.class, id);
         } catch (RuntimeException re) {
             emHelper.log("find failed", Level.SEVERE, re);
             throw re;
         }
+        return instance;
     }
 
     /**
@@ -157,12 +156,12 @@ public class GamesDAO {
      * @return List<GamesEntity> found by query
      */
     @SuppressWarnings("unchecked")
-    public List<GamesEntity> findByProperty(String propertyName, final Object value) {
+    public List<GamesEntity> findByProperty(final String propertyName, final Object value) {
         emHelper.log("finding User instance with property: " + propertyName + ", value: " + value, Level.INFO, null);
         try {
             final String queryString = "select model from GamesEntity model where model." + propertyName
                     + "= :propertyValue";
-            Query query = getEntityManager().createQuery(queryString);
+            final Query query = getEntityManager().createQuery(queryString);
             query.setParameter("propertyValue", value);
             return query.getResultList();
         } catch (RuntimeException re) {
@@ -171,12 +170,28 @@ public class GamesDAO {
         }
     }
 
-    public List<GamesEntity> findById(Object id) {
+    public List<GamesEntity> findById(final Object id) {
         return findByProperty(ID, id);
     }
 
-    public List<GamesEntity> findByName(Object name) {
+    public List<GamesEntity> findByName(final Object name) {
         return findByProperty(WON, name);
+    }
+
+    public List<GamesEntity> findByGame(final Object game) {
+        return findByProperty(GAME, game);
+    }
+
+
+    /**
+     * Find all games that has only one player
+     * @return
+     */
+    public GamesEntity findCreatedGames() {
+        final TypedQuery<GamesEntity> query = getEntityManager().createNamedQuery("GamesEntity.findCreatedGames", GamesEntity.class);
+        query.setParameter("playerNumber", 1);
+        final GamesEntity result = query.getResultList().get(Constants.FIRST);
+        return result;
     }
 
     /**
@@ -189,12 +204,15 @@ public class GamesDAO {
         emHelper.log("finding all User instances", Level.INFO, null);
         try {
             final String queryString = "select model from GamesEntity model";
-            Query query = getEntityManager().createQuery(queryString);
+            final Query query = getEntityManager().createQuery(queryString);
             return query.getResultList();
         } catch (RuntimeException re) {
             emHelper.log("find all failed", Level.SEVERE, re);
             throw re;
         }
     }
+
+
+
 
 }

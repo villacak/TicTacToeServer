@@ -10,13 +10,18 @@ import java.util.List;
  */
 @Entity
 @Table(name = "games", schema = "tictactoe_schema")
-@NamedQuery(name="GamesEntity.findAll", query="SELECT c FROM GamesEntity c")
+@NamedQueries({
+        @NamedQuery(name="GamesEntity.findAll", query="SELECT c FROM GamesEntity c"),
+        @NamedQuery(name="GamesEntity.findCreatedGames", query="SELECT c FROM GamesEntity c WHERE c.playersNumber = :playerNumber")
+})
 public class GamesEntity {
     private UserEntity user;
     private List<PlayEntity> plays;
     private int idgames;
+    private int game;
     private String playerXOrO;
     private String wonXOrY;
+    private int playersNumber;
 
     @JsonBackReference
     @ManyToOne
@@ -24,7 +29,7 @@ public class GamesEntity {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(final UserEntity user) {
         this.user = user;
     }
 
@@ -34,7 +39,7 @@ public class GamesEntity {
         return plays;
     }
 
-    public void setPlays(List<PlayEntity> plays) {
+    public void setPlays(final List<PlayEntity> plays) {
         this.plays = plays;
     }
 
@@ -46,7 +51,7 @@ public class GamesEntity {
         return idgames;
     }
 
-    public void setIdgames(int idgames) {
+    public void setIdgames(final int idgames) {
         this.idgames = idgames;
     }
 
@@ -56,7 +61,7 @@ public class GamesEntity {
         return playerXOrO;
     }
 
-    public void setPlayerXOrO(String playerXOrO) {
+    public void setPlayerXOrO(final String playerXOrO) {
         this.playerXOrO = playerXOrO;
     }
 
@@ -66,29 +71,28 @@ public class GamesEntity {
         return wonXOrY;
     }
 
-    public void setWonXOrY(String wonXOrY) {
+    public void setWonXOrY(final String wonXOrY) {
         this.wonXOrY = wonXOrY;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        GamesEntity that = (GamesEntity) o;
-
-        if (idgames != that.idgames) return false;
-        if (playerXOrO != null ? !playerXOrO.equals(that.playerXOrO) : that.playerXOrO != null) return false;
-        if (wonXOrY != null ? !wonXOrY.equals(that.wonXOrY) : that.wonXOrY != null) return false;
-
-        return true;
+    @Basic
+    @Column(name = "game", nullable = true)
+    public int getGame() {
+        return game;
     }
 
-    @Override
-    public int hashCode() {
-        int result = idgames;
-        result = 31 * result + (playerXOrO != null ? playerXOrO.hashCode() : 0);
-        result = 31 * result + (wonXOrY != null ? wonXOrY.hashCode() : 0);
-        return result;
+    public void setGame(final int game) {
+        this.game = game;
+    }
+
+
+    @Basic
+    @Column(name = "players_number", nullable = true)
+    public int getPlayersNumber() {
+        return playersNumber;
+    }
+
+    public void setPlayersNumber(final int playersNumber) {
+        this.playersNumber = playersNumber;
     }
 }

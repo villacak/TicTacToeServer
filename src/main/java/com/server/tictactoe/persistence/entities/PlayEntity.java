@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class PlayEntity {
     private GamesEntity game;
     private int playid;
-    private Integer position;
+    private int position;
 
     @JsonBackReference
     @ManyToOne
@@ -21,7 +21,7 @@ public class PlayEntity {
         return game;
     }
 
-    public void setGame(GamesEntity game) {
+    public void setGame(final GamesEntity game) {
         this.game = game;
     }
 
@@ -33,37 +33,17 @@ public class PlayEntity {
         return playid;
     }
 
-    public void setPlayid(int playid) {
+    public void setPlayid(final int playid) {
         this.playid = playid;
     }
 
     @Basic
     @Column(name = "position", nullable = true)
-    public Integer getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPosition(Integer position) {
+    public void setPosition(final int position) {
         this.position = position;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlayEntity that = (PlayEntity) o;
-
-        if (playid != that.playid) return false;
-        if (position != null ? !position.equals(that.position) : that.position != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = playid;
-        result = 31 * result + (position != null ? position.hashCode() : 0);
-        return result;
     }
 }

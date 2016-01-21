@@ -22,12 +22,6 @@ public class UserDAO {
         emHelper = new EntityManagerHelper();
     }
 
-    // Just for tests
-    public UserDAO(EntityManagerHelper emHelper) {
-        this.emHelper = emHelper;
-    }
-
-
     private EntityManager getEntityManager() {
         return emHelper.getEntityManager();
     }
@@ -123,10 +117,10 @@ public class UserDAO {
      * @throws RuntimeException
      *             if the operation fails
      */
-    public UserEntity update(UserEntity entity) {
+    public UserEntity update(final UserEntity entity) {
         emHelper.log("updating User instance", Level.INFO, null);
         try {
-            UserEntity result = getEntityManager().merge(entity);
+            final UserEntity result = getEntityManager().merge(entity);
             emHelper.log("update successful", Level.INFO, null);
             return result;
         } catch (RuntimeException re) {
@@ -135,10 +129,10 @@ public class UserDAO {
         }
     }
 
-    public UserEntity findById(Integer id) {
+    public UserEntity findById(final Integer id) {
         emHelper.log("finding User instance with id: " + id, Level.INFO, null);
         try {
-            UserEntity instance = getEntityManager().find(UserEntity.class, id);
+            final UserEntity instance = getEntityManager().find(UserEntity.class, id);
             return instance;
         } catch (RuntimeException re) {
             emHelper.log("find failed", Level.SEVERE, re);
@@ -156,12 +150,12 @@ public class UserDAO {
      * @return List<UserEntity> found by query
      */
     @SuppressWarnings("unchecked")
-    public List<UserEntity> findByProperty(String propertyName, final Object value) {
+    public List<UserEntity> findByProperty(final String propertyName, final Object value) {
         emHelper.log("finding User instance with property: " + propertyName + ", value: " + value, Level.INFO, null);
         try {
             final String queryString = "select model from UserEntity model where model." + propertyName
                     + "= :propertyValue";
-            Query query = getEntityManager().createQuery(queryString);
+            final Query query = getEntityManager().createQuery(queryString);
             query.setParameter("propertyValue", value);
             return query.getResultList();
         } catch (RuntimeException re) {
@@ -170,11 +164,11 @@ public class UserDAO {
         }
     }
 
-    public List<UserEntity> findById(Object id) {
+    public List<UserEntity> findById(final Object id) {
         return findByProperty(ID, id);
     }
 
-    public List<UserEntity> findByName(Object name) {
+    public List<UserEntity> findByName(final Object name) {
         return findByProperty(NAME, name);
     }
 
@@ -188,7 +182,7 @@ public class UserDAO {
         emHelper.log("finding all User instances", Level.INFO, null);
         try {
             final String queryString = "select model from UserEntity model";
-            Query query = getEntityManager().createQuery(queryString);
+            final Query query = getEntityManager().createQuery(queryString);
             return query.getResultList();
         } catch (RuntimeException re) {
             emHelper.log("find all failed", Level.SEVERE, re);

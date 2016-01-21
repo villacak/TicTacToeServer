@@ -23,12 +23,6 @@ public class PlayDAO {
         emHelper = new EntityManagerHelper();
     }
 
-    // Just for tests
-    public PlayDAO(EntityManagerHelper emHelper) {
-        this.emHelper = emHelper;
-    }
-
-
     private EntityManager getEntityManager() {
         return emHelper.getEntityManager();
     }
@@ -124,10 +118,10 @@ public class PlayDAO {
      * @throws RuntimeException
      *             if the operation fails
      */
-    public PlayEntity update(PlayEntity entity) {
+    public PlayEntity update(final PlayEntity entity) {
         emHelper.log("updating User instance", Level.INFO, null);
         try {
-            PlayEntity result = getEntityManager().merge(entity);
+            final PlayEntity result = getEntityManager().merge(entity);
             emHelper.log("update successful", Level.INFO, null);
             return result;
         } catch (RuntimeException re) {
@@ -136,10 +130,10 @@ public class PlayDAO {
         }
     }
 
-    public PlayEntity findById(Integer id) {
+    public PlayEntity findById(final int id) {
         emHelper.log("finding User instance with id: " + id, Level.INFO, null);
         try {
-            PlayEntity instance = getEntityManager().find(PlayEntity.class, id);
+            final PlayEntity instance = getEntityManager().find(PlayEntity.class, id);
             return instance;
         } catch (RuntimeException re) {
             emHelper.log("find failed", Level.SEVERE, re);
@@ -157,12 +151,12 @@ public class PlayDAO {
      * @return List<PlayEntity> found by query
      */
     @SuppressWarnings("unchecked")
-    public List<PlayEntity> findByProperty(String propertyName, final Object value) {
+    public List<PlayEntity> findByProperty(final String propertyName, final Object value) {
         emHelper.log("finding User instance with property: " + propertyName + ", value: " + value, Level.INFO, null);
         try {
             final String queryString = "select model from PlayEntity model where model." + propertyName
                     + "= :propertyValue";
-            Query query = getEntityManager().createQuery(queryString);
+            final Query query = getEntityManager().createQuery(queryString);
             query.setParameter("propertyValue", value);
             return query.getResultList();
         } catch (RuntimeException re) {
@@ -171,11 +165,11 @@ public class PlayDAO {
         }
     }
 
-    public List<PlayEntity> findById(Object id) {
+    public List<PlayEntity> findById(final Object id) {
         return findByProperty(ID, id);
     }
 
-    public List<PlayEntity> findByName(Object name) {
+    public List<PlayEntity> findByName(final Object name) {
         return findByProperty(WON, name);
     }
 
@@ -189,7 +183,7 @@ public class PlayDAO {
         emHelper.log("finding all User instances", Level.INFO, null);
         try {
             final String queryString = "select model from PlayEntity model";
-            Query query = getEntityManager().createQuery(queryString);
+            final Query query = getEntityManager().createQuery(queryString);
             return query.getResultList();
         } catch (RuntimeException re) {
             emHelper.log("find all failed", Level.SEVERE, re);
