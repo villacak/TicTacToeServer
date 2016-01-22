@@ -4,6 +4,7 @@ import com.server.tictactoe.Constants;
 import com.server.tictactoe.persistence.daos.GamesDAO;
 import com.server.tictactoe.persistence.daos.UserDAO;
 import com.server.tictactoe.persistence.entities.GamesEntity;
+import com.server.tictactoe.persistence.entities.PlayEntity;
 import com.server.tictactoe.persistence.entities.UserEntity;
 import com.server.tictactoe.utils.DateUtils;
 
@@ -98,14 +99,67 @@ public class GameHelper {
         final GamesDAO gamesDAO = new GamesDAO();
         final List<GamesEntity> gamesEntity = gamesDAO.findByGame(game);
         if (gamesEntity != null && gamesEntity.size() > 0) {
-            if (gamesEntity.size() == 1) {
-                // return the other selection if the selection is different
-                // it's needed to create a new game with the same game
-            } else {
                 // check if position is equal the last one to return, if it's different
                 // return the last game
-            }
         }
         return respToReturn;
+    }
+
+
+    /**
+     * Check if has a winner
+     *
+     * Positions:
+     *
+     *  0 # 1 # 2
+     * ===#===#===
+     *  3 # 4 # 5
+     * ===#===#===
+     *  6 # 7 # 8
+     *
+     * @return
+     */
+    private boolean checkIfHasAWinner(final GamesEntity gamesEntity) {
+        boolean hasWiner = false;
+        final List<PlayEntity> plays = gamesEntity.getPlays();
+        int p0 = 0;
+        int p1 = 0;
+        int p2 = 0;
+        int p3 = 0;
+        int p4 = 0;
+        int p5 = 0;
+        int p6 = 0;
+        int p7 = 0;
+        int p8 = 0;
+
+        for (PlayEntity play: plays) {
+            final int playPos = play.getPosition();
+            if (playPos == 0) {
+                p0 = 1;
+            } else if (playPos == 1) {
+                p1 = 2;
+            } else if (playPos == 2) {
+                p1 = 3;
+            } else if (playPos == 3) {
+                p1 = 4;
+            } else if (playPos == 4) {
+                p1 = 5;
+            } else if (playPos == 5) {
+                p1 = 6;
+            } else if (playPos == 6) {
+                p1 = 7;
+            } else if (playPos == 7) {
+                p1 = 8;
+            } else if (playPos == 8) {
+                p1 = 9;
+            }
+        }
+        if ((p0 > 0 && p1 > 0 && p2 > 0) || (p3 > 0 && p4 > 0 && p5 > 0) || (p6 > 0 && p7 > 0 && p8 > 0) ||
+            (p0 > 0 && p3 > 0 && p6 > 0) || (p1 > 0 && p4 > 0 && p7 > 0) || (p2 > 0 && p5 > 0 && p8 > 0) ||
+            (p0 > 0 && p4 > 0 && p6 > 8) || (p2 > 0 && p4 > 0 && p6 > 0)) {
+            hasWiner = true;
+        }
+
+        return hasWiner;
     }
 }
