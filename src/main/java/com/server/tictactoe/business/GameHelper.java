@@ -1,12 +1,15 @@
 package com.server.tictactoe.business;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.tictactoe.Constants;
+import com.server.tictactoe.business.pojos.CheckGame;
 import com.server.tictactoe.persistence.daos.GamesDAO;
 import com.server.tictactoe.persistence.daos.UserDAO;
 import com.server.tictactoe.persistence.entities.GamesEntity;
 import com.server.tictactoe.persistence.entities.PlayEntity;
 import com.server.tictactoe.persistence.entities.UserEntity;
 import com.server.tictactoe.utils.DateUtils;
+import org.codehaus.jettison.json.JSONObject;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -99,8 +102,25 @@ public class GameHelper {
         final GamesDAO gamesDAO = new GamesDAO();
         final List<GamesEntity> gamesEntity = gamesDAO.findByGame(game);
         if (gamesEntity != null && gamesEntity.size() > 0) {
-                // check if position is equal the last one to return, if it's different
-                // return the last game
+            boolean hasWinner = false;
+            final GamesEntity tempEntityForcheck = gamesEntity.get(gamesEntity.size() - 1);
+            final CheckGame checkGame = new CheckGame();
+            checkGame.setPlayNumber(gamesEntity.size());
+            checkGame.setGamesEntity(tempEntityForcheck);
+
+            // We don't need to check when its impossible to have a winner
+            if (gamesEntity.size() >= Constants.MINIMUM_VALUE_TO_START_CHECKING) {
+                hasWinner = checkIfHasAWinner(tempEntityForcheck);
+            }
+            checkGame.setWinner(hasWinner);
+
+            final ObjectMapper mapper = new ObjectMapper();
+            final String checkGameAsString = mapper.writeValueAsString(checkGame);
+            final JSONObject json = new JSONObject(checkGameAsString);
+
+            respToReturn = Response.ok(json, MediaType.APPLICATION_JSON_TYPE).build();
+        } else {
+            respToReturn = Response.status(Response.Status.NO_CONTENT).build();
         }
         return respToReturn;
     }
