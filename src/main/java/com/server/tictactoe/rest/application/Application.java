@@ -16,7 +16,7 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/rest")
 public class Application extends ResourceConfig {
     public Application() {
-        packages("com.server.tictactoe.rest.endpoints", "com.server.tictactoe.rest.filter");
+        packages("com.server.tictactoe.rest.endpoints");
         register(EntityFilteringFeature.class);
 
         // Some logs to see request been received

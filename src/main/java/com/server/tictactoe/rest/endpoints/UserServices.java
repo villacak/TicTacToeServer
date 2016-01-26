@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
  */
 
 @Path("/user/v1")
+@Consumes("*/*")
 public class UserServices {
 
     /**

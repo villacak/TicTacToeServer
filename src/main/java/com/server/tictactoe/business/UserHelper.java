@@ -84,11 +84,11 @@ public class UserHelper {
      * @return
      * @throws Exception
      */
-    public UserEntity retrieveUserIfAlreadyExist(final String name) throws Exception {
+    public UserEntity retrieveUserIfAlreadyExist(final String name) {
         UserEntity user = null;
         final UserDAO dao = new UserDAO();
         final List<UserEntity> names = dao.findByName(name);
-        if (names != null && names.size() > 0) {
+        if (names != null && names.size() > Constants.FIRST) {
             for(final UserEntity tempUserEntity : names) {
                 if (name.equals(tempUserEntity.getUserName())) {
                     user = tempUserEntity;

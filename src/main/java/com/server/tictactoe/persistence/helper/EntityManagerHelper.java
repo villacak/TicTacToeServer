@@ -17,24 +17,18 @@ import javax.persistence.Query;
  */
 public class EntityManagerHelper {
 
+    private static final String PU = "ttt_pu";
+
     protected EntityManagerFactory emf;
     protected ThreadLocal<EntityManager> threadLocal;
     protected Logger logger;
 
 
     public EntityManagerHelper() {
-        emf = Persistence.createEntityManagerFactory("FirstProject");
+        emf = Persistence.createEntityManagerFactory(PU);
         threadLocal = new ThreadLocal<EntityManager>();
-        logger = Logger.getLogger("FirstProject");
+        logger = Logger.getLogger(PU);
         logger.setLevel(Level.ALL);
-    }
-
-
-    // Constructor just for tests
-    public EntityManagerHelper(EntityManagerFactory emf, ThreadLocal<EntityManager> threadLocal, Logger logger) {
-        this.emf = emf;
-        this.threadLocal = threadLocal;
-        this.logger = logger;
     }
 
     public EntityManager getEntityManager() {
