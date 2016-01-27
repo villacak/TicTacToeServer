@@ -23,6 +23,7 @@ public class UserHelper {
         Response respReturn = null;
         UserEntity userEntity = retrieveUserIfAlreadyExist(name);
         if (userEntity == null) {
+            userEntity = new UserEntity();
             userEntity.setLastDatePlayed(Constants.EMPTY_DATE);
             userEntity.setStatsLoses(0);
             userEntity.setStatsTied(0);

@@ -1,6 +1,6 @@
 package com.server.tictactoe.persistence.helper;
 
-        import javax.naming.Context;
+import javax.naming.Context;
         import javax.naming.InitialContext;
 
         import org.eclipse.persistence.config.SessionCustomizer;

@@ -33,6 +33,6 @@
      -->
     
     <!-- Configure Tomcat Data Source for MySQL DB -->
-    <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="jdbc/Target" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/ttt_ds" username="root"/>
+    <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="jdbc/ttt_ds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/tictactoe_schema" username="root"/>
     
 </Context>
