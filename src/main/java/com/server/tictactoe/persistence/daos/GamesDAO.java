@@ -56,8 +56,9 @@ public class GamesDAO {
         emHelper.log("saving User instance", Level.INFO, null);
         int idToReturn = 0;
         try {
+            getEntityManager().getTransaction().begin();
             getEntityManager().persist(entity);
-            getEntityManager().flush();
+            getEntityManager().getTransaction().commit();
             idToReturn = entity.getIdgames();
             emHelper.log("save successful", Level.INFO, null);
         } catch (RuntimeException re) {
@@ -89,8 +90,10 @@ public class GamesDAO {
     public void delete(GamesEntity entity) {
         emHelper.log("deleting User instance", Level.INFO, null);
         try {
+            getEntityManager().getTransaction().begin();
             entity = getEntityManager().getReference(GamesEntity.class, entity.getIdgames());
             getEntityManager().remove(entity);
+            getEntityManager().getTransaction().commit();
             emHelper.log("delete successful", Level.INFO, null);
         } catch (RuntimeException re) {
             emHelper.log("delete failed", Level.SEVERE, re);
@@ -125,7 +128,9 @@ public class GamesDAO {
         emHelper.log("updating User instance", Level.INFO, null);
         final GamesEntity result;
         try {
+            getEntityManager().getTransaction().begin();
             result = getEntityManager().merge(entity);
+            getEntityManager().getTransaction().commit();
             emHelper.log("update successful", Level.INFO, null);
         } catch (RuntimeException re) {
             emHelper.log("update failed", Level.SEVERE, re);
@@ -134,6 +139,11 @@ public class GamesDAO {
         return result;
     }
 
+    /**
+     * Find by PK
+     * @param id
+     * @return
+     */
     public GamesEntity findById(final int id) {
         emHelper.log("finding User instance with id: " + id, Level.INFO, null);
         final GamesEntity instance;

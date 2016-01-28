@@ -53,8 +53,9 @@ public class PlayDAO {
         emHelper.log("saving User instance", Level.INFO, null);
         int idToReturn = 0;
         try {
+            getEntityManager().getTransaction().begin();
             getEntityManager().persist(entity);
-            getEntityManager().flush();
+            getEntityManager().getTransaction().commit();
             idToReturn = entity.getPlayid();
             emHelper.log("save successful", Level.INFO, null);
         } catch (RuntimeException re) {
@@ -86,8 +87,10 @@ public class PlayDAO {
     public void delete(PlayEntity entity) {
         emHelper.log("deleting User instance", Level.INFO, null);
         try {
+            getEntityManager().getTransaction().begin();
             entity = getEntityManager().getReference(PlayEntity.class, entity.getPlayid());
             getEntityManager().remove(entity);
+            getEntityManager().getTransaction().commit();
             emHelper.log("delete successful", Level.INFO, null);
         } catch (RuntimeException re) {
             emHelper.log("delete failed", Level.SEVERE, re);
@@ -121,7 +124,9 @@ public class PlayDAO {
     public PlayEntity update(final PlayEntity entity) {
         emHelper.log("updating User instance", Level.INFO, null);
         try {
+            getEntityManager().getTransaction().begin();
             final PlayEntity result = getEntityManager().merge(entity);
+            getEntityManager().getTransaction().commit();
             emHelper.log("update successful", Level.INFO, null);
             return result;
         } catch (RuntimeException re) {
@@ -130,6 +135,12 @@ public class PlayDAO {
         }
     }
 
+
+    /**
+     * Find by PK
+     * @param id
+     * @return
+     */
     public PlayEntity findById(final int id) {
         emHelper.log("finding User instance with id: " + id, Level.INFO, null);
         try {

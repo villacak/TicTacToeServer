@@ -135,6 +135,12 @@ public class UserDAO {
         }
     }
 
+
+    /**
+     * Find by PK
+     * @param id
+     * @return
+     */
     public UserEntity findById(final Integer id) {
         emHelper.log("finding User instance with id: " + id, Level.INFO, null);
         try {
