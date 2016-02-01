@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.tictactoe.Constants;
 import com.server.tictactoe.business.pojos.CheckGame;
 import com.server.tictactoe.persistence.daos.GamesDAO;
+import com.server.tictactoe.persistence.daos.PlayDAO;
 import com.server.tictactoe.persistence.daos.UserDAO;
 import com.server.tictactoe.persistence.entities.GamesEntity;
 import com.server.tictactoe.persistence.entities.PlayEntity;
@@ -86,6 +87,27 @@ public class GameHelper {
             }
         }
         return gamesEntity;
+    }
+
+
+    public Response userPlay(final String game, final String selection, final String position) throws Exception {
+        Response respToReturn = null;
+        final GamesDAO gamesDAO = new GamesDAO();
+        final List<GamesEntity> gamesEntity = gamesDAO.findByGame(game);
+        if (gamesEntity != null && gamesEntity.size() > 0) {
+            final PlayEntity playEntity = new PlayEntity();
+            final GamesEntity tempGameEntity = gamesEntity.get(gamesEntity.size() - 1);
+            playEntity.setGame(tempGameEntity);
+            playEntity.setPosition(Integer.valueOf(position));
+            playEntity.setPlayid(tempGameEntity.getUser().getIduser());
+
+            final PlayDAO playDAO = new PlayDAO();
+            playDAO.save(playEntity);
+            respToReturn = Response.ok().build();
+        } else {
+            respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+        }
+        return respToReturn;
     }
 
 
