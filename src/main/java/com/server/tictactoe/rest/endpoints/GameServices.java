@@ -93,4 +93,23 @@ public class GameServices {
         }
         return resp;
     }
+
+
+    @GET
+    @Path("/finalize")
+    @Produces("application/json")
+    public Response finalize(@QueryParam("game") final String game,
+                             @QueryParam("selection") final String selection) {
+        Response resp = null;
+        try {
+            if ((game != null && !game.equals(Constants.EMPTY)) &&
+                    (selection != null && !selection.equals(Constants.EMPTY))) {
+                final GameHelper gameHelper = new GameHelper();
+                resp = gameHelper.finalizeGame(game, selection);
+            }
+        }  catch (Exception e) {
+            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        return resp;
+    }
 }

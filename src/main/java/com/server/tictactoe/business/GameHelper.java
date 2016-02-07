@@ -204,4 +204,46 @@ public class GameHelper {
 
         return hasWiner;
     }
+
+
+    /**
+     * Finalize the game, removing all arlready played and data from that game
+     *
+     * @param game
+     * @param selection
+     * @return
+     * @throws Exception
+     */
+    public Response finalizeGame(final String game, final String selection) throws Exception {
+        Response respToReturn = null;
+        final GamesDAO gamesDAO = new GamesDAO();
+        final List<GamesEntity> gamesEntities = gamesDAO.findByGame(game);
+        if (gamesEntities != null && gamesEntities.size() > 0) {
+            boolean hasBeenDelete = false;
+            for (GamesEntity entity : gamesEntities) {
+                final String selected = entity.getPlayerXOrO();
+                if (selected.equals(selection)) {
+                    final List<PlayEntity> gamePlays = entity.getPlays();
+                    final PlayDAO playDAO = new PlayDAO();
+                    if (gamePlays != null) {
+                        for (PlayEntity play : gamePlays) {
+                            playDAO.delete(play);
+                        }
+                    }
+                    gamesDAO.delete(entity);
+                    hasBeenDelete = true;
+                    break;
+                }
+            }
+
+            if (hasBeenDelete) {
+                respToReturn = Response.ok().build();
+            } else {
+                respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+            }
+        } else {
+            respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+        }
+        return respToReturn;
+    }
 }
