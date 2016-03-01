@@ -35,7 +35,11 @@ public class UserHelper {
 
             respReturn = Response.ok(userEntity, MediaType.APPLICATION_JSON).build();
         } else {
-            respReturn = Response.status(Response.Status.CONFLICT).build();
+            if (userEntity != null) {
+                respReturn = Response.ok(userEntity, MediaType.APPLICATION_JSON).build();
+            } else {
+                respReturn = Response.status(Response.Status.CONFLICT).build();
+            }
         }
         return respReturn;
     }
