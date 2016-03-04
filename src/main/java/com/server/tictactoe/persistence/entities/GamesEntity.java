@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "games", schema = "tictactoe_schema")
 @NamedQueries({
         @NamedQuery(name="GamesEntity.findAll", query="SELECT c FROM GamesEntity c"),
-        @NamedQuery(name="GamesEntity.findCreatedGames", query="SELECT c FROM GamesEntity c WHERE c.playersNumber = :playerNumber")
+        @NamedQuery(name="GamesEntity.findCreatedGames", query="SELECT c FROM GamesEntity c WHERE c.playersNumber = :playersNumber")
 })
 public class GamesEntity {
     private UserEntity user;
@@ -25,6 +25,7 @@ public class GamesEntity {
 
     @JsonBackReference
     @ManyToOne
+    @JoinColumn(name="player", referencedColumnName = "iduser")
     public UserEntity getUser() {
         return user;
     }

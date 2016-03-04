@@ -198,9 +198,13 @@ public class GamesDAO {
      * @return
      */
     public GamesEntity findCreatedGames() {
-        final TypedQuery<GamesEntity> query = getEntityManager().createNamedQuery("GamesEntity.findCreatedGames", GamesEntity.class);
-        query.setParameter("playerNumber", 1);
-        final GamesEntity result = query.getResultList().get(Constants.FIRST);
+        final Query query = getEntityManager().createNamedQuery("GamesEntity.findCreatedGames");
+        query.setParameter("playersNumber", 1);
+        final List<GamesEntity> games = query.getResultList();
+        GamesEntity result = null;
+        if (games != null && games.size() > 0) {
+            result = games.get(Constants.FIRST);
+        }
         return result;
     }
 
@@ -221,8 +225,4 @@ public class GamesDAO {
             throw re;
         }
     }
-
-
-
-
 }

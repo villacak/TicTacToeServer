@@ -19,12 +19,12 @@ public class GameServices {
      * @return
      */
     @PUT
-    @Path("/create/{userName}")
+    @Path("/create/{name}")
     @Produces("application/json")
     public Response createGame(@PathParam("name") final String name) {
         Response resp = null;
         try {
-            if (name != null && name.equals(Constants.EMPTY)) {
+            if (name != null && !name.equals(Constants.EMPTY)) {
                 final GameHelper gameHelper = new GameHelper();
                 resp = gameHelper.createGameFirstIfNeeded(name);
             } else {
