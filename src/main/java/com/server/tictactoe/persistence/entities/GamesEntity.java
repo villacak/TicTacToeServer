@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "games", schema = "tictactoe_schema")
 @NamedQueries({
         @NamedQuery(name="GamesEntity.findAll", query="SELECT c FROM GamesEntity c"),
+        @NamedQuery(name="GamesEntity.getAllFromSelection", query="SELECT c FROM GamesEntity c WHERE c.playerXOrO = :playerXOrO AND c.playersNumber > 0"),
         @NamedQuery(name="GamesEntity.findCreatedGames", query="SELECT c FROM GamesEntity c WHERE c.playersNumber = :playersNumber")
 })
 public class GamesEntity {

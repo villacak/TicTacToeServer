@@ -48,7 +48,7 @@ public class GameHelper {
      */
     private GamesEntity getGameEntityForGameAlreadyCreated(final String userName) throws Exception {
         final GamesDAO gamesDAO = new GamesDAO();
-        GamesEntity entitySelected = gamesDAO.findCreatedGames();
+        GamesEntity entitySelected = gamesDAO.findCreatedGames(Constants.O_SELECTION);
         if (entitySelected != null) {
             final int game = entitySelected.getGame();
             entitySelected = createABrandNewGame(userName, Constants.O_SELECTION, entitySelected.getGame());
@@ -209,31 +209,26 @@ public class GameHelper {
     /**
      * Finalize the game, removing all arlready played and data from that game
      *
-     * @param game
-     * @param selection
+     * @param name
      * @return
      * @throws Exception
      */
-    public Response finalizeGame(final String game, final String selection) throws Exception {
+    public Response finalizeGame(final String name) throws Exception {
         Response respToReturn = null;
         final GamesDAO gamesDAO = new GamesDAO();
-        final List<GamesEntity> gamesEntities = gamesDAO.findByGame(game);
+        final List<GamesEntity> gamesEntities = gamesDAO.findByName(name);
         if (gamesEntities != null && gamesEntities.size() > 0) {
             boolean hasBeenDelete = false;
             for (GamesEntity entity : gamesEntities) {
-                final String selected = entity.getPlayerXOrO();
-                if (selected.equals(selection)) {
-                    final List<PlayEntity> gamePlays = entity.getPlays();
-                    final PlayDAO playDAO = new PlayDAO();
-                    if (gamePlays != null) {
-                        for (PlayEntity play : gamePlays) {
-                            playDAO.delete(play);
-                        }
+                final List<PlayEntity> gamePlays = entity.getPlays();
+                final PlayDAO playDAO = new PlayDAO();
+                if (gamePlays != null && gamePlays.size() > 0) {
+                    for (PlayEntity play : gamePlays) {
+                        playDAO.delete(play);
                     }
-                    gamesDAO.delete(entity);
-                    hasBeenDelete = true;
-                    break;
                 }
+                gamesDAO.delete(entity);
+                hasBeenDelete = true;
             }
 
             if (hasBeenDelete) {

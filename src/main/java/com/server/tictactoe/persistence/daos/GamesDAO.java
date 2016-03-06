@@ -18,6 +18,7 @@ public class GamesDAO {
     private static final String ID = "idgames";
     private static final String WON = "wonXOrY";
     private static final String GAME = "game";
+    private static final String NAME = "user.userName";
 
 
     private EntityManagerHelper emHelper;
@@ -185,7 +186,7 @@ public class GamesDAO {
     }
 
     public List<GamesEntity> findByName(final Object name) {
-        return findByProperty(WON, name);
+        return findByProperty(NAME, name);
     }
 
     public List<GamesEntity> findByGame(final Object game) {
@@ -197,9 +198,9 @@ public class GamesDAO {
      * Find all games that has only one player
      * @return
      */
-    public GamesEntity findCreatedGames() {
-        final Query query = getEntityManager().createNamedQuery("GamesEntity.findCreatedGames");
-        query.setParameter("playersNumber", 1);
+    public GamesEntity findCreatedGames(final String selection) {
+        final Query query = getEntityManager().createNamedQuery("GamesEntity.getAllFromSelection");
+        query.setParameter("playerXOrO", selection);
         final List<GamesEntity> games = query.getResultList();
         GamesEntity result = null;
         if (games != null && games.size() > 0) {
