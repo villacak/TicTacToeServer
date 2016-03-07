@@ -9,6 +9,7 @@ import com.server.tictactoe.persistence.daos.UserDAO;
 import com.server.tictactoe.persistence.entities.GamesEntity;
 import com.server.tictactoe.persistence.entities.PlayEntity;
 import com.server.tictactoe.persistence.entities.UserEntity;
+import com.server.tictactoe.utils.CreateErrorResponse;
 import com.server.tictactoe.utils.DateUtils;
 import org.codehaus.jettison.json.JSONObject;
 
@@ -21,29 +22,9 @@ import java.util.List;
  */
 public class GameHelper {
 
+    private final int ZERO_PLAYERS = 0;
     private final int FIRST_PLAYER = 1;
     private final int SECOND_PLAYER = 2;
-
-    /**
-     * Retrive the very first game with one player only - mean the player is awaiting
-     * @return
-     * @throws Exception
-     */
-    private GamesEntity getGameEntityForGameAlreadyCreated(final String userName) throws Exception {
-        final GamesDAO gamesDAO = new GamesDAO();
-        final GamesEntity entitySelectedO = gamesDAO.findCreatedGames(Constants.O_SELECTION);
-        final GamesEntity entitySelectedX = gamesDAO.findCreatedGames(Constants.X_SELECTION);
-
-        GamesEntity entityToReturn = null;
-        if (entitySelectedO == null && entitySelectedX != null) {
-            final int game = entitySelectedX.getGame();
-            entityToReturn = createABrandNewGame(userName, Constants.O_SELECTION, game, SECOND_PLAYER);
-        } else if (entitySelectedO != null && entitySelectedX == null) {
-            final int game = entitySelectedO.getGame();
-            entityToReturn = createABrandNewGame(userName, Constants.X_SELECTION, game, FIRST_PLAYER);
-        }
-        return entityToReturn;
-    }
 
 
     /**
@@ -55,12 +36,39 @@ public class GameHelper {
     public Response createGameFirstIfNeeded(final String userName) throws Exception {
         Response respToReturn = null;
         final UserHelper userHelper = new UserHelper();
+        final GamesDAO gamesDAO = new GamesDAO();
+        final GamesEntity entitySelectedO = gamesDAO.findCreatedGames(Constants.O_SELECTION);
+        final GamesEntity entitySelectedX = gamesDAO.findCreatedGames(Constants.X_SELECTION);
 
-        GamesEntity gamesEntity = getGameEntityForGameAlreadyCreated(userName);
-        if (gamesEntity == null) {
-            gamesEntity = createABrandNewGame(userName, Constants.X_SELECTION, 0, FIRST_PLAYER);
+        GamesEntity gamesEntity = null;
+        if (entitySelectedO == null && entitySelectedX != null) {
+            if (!entitySelectedX.getUser().getUserName().equals(userName)) {
+                final int game = entitySelectedX.getGame();
+                gamesEntity = createABrandNewGame(userName, Constants.O_SELECTION, game, SECOND_PLAYER);
+                entitySelectedX.setPlayersNumber(FIRST_PLAYER);
+                final GamesDAO dao = new GamesDAO();
+                dao.update(entitySelectedX);
+            } else {
+                respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.CONFLICT);
+            }
+        } else if (entitySelectedO != null && entitySelectedX == null) {
+            if (!entitySelectedO.getUser().getUserName().equals(userName)) {
+                final int game = entitySelectedO.getGame();
+                gamesEntity = createABrandNewGame(userName, Constants.X_SELECTION, game, FIRST_PLAYER);
+                entitySelectedO.setPlayersNumber(SECOND_PLAYER);
+                final GamesDAO dao = new GamesDAO();
+                dao.update(entitySelectedO);
+            } else {
+                respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.CONFLICT);
+            }
         }
-        respToReturn = Response.ok(gamesEntity, MediaType.APPLICATION_JSON).build();
+
+        if (respToReturn == null) {
+            if (gamesEntity == null) {
+                gamesEntity = createABrandNewGame(userName, Constants.X_SELECTION, 0, ZERO_PLAYERS);
+            }
+            respToReturn = Response.ok(gamesEntity, MediaType.APPLICATION_JSON).build();
+        }
         return respToReturn;
     }
 
@@ -114,7 +122,7 @@ public class GameHelper {
             playDAO.save(playEntity);
             respToReturn = Response.ok().build();
         } else {
-            respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+            respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
         return respToReturn;
     }
@@ -151,7 +159,7 @@ public class GameHelper {
 
             respToReturn = Response.ok(json, MediaType.APPLICATION_JSON_TYPE).build();
         } else {
-            respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+            respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
         return respToReturn;
     }
@@ -243,10 +251,10 @@ public class GameHelper {
             if (hasBeenDelete) {
                 respToReturn = Response.ok().build();
             } else {
-                respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+                respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
             }
         } else {
-            respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+            respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
         return respToReturn;
     }

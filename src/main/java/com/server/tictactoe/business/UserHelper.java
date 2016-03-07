@@ -3,6 +3,7 @@ package com.server.tictactoe.business;
 import com.server.tictactoe.Constants;
 import com.server.tictactoe.persistence.daos.UserDAO;
 import com.server.tictactoe.persistence.entities.UserEntity;
+import com.server.tictactoe.utils.CreateErrorResponse;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,7 +39,7 @@ public class UserHelper {
             if (userEntity != null) {
                 respReturn = Response.ok(userEntity, MediaType.APPLICATION_JSON).build();
             } else {
-                respReturn = Response.status(Response.Status.CONFLICT).build();
+                respReturn = CreateErrorResponse.createErrorResponse(Response.Status.CONFLICT);
             }
         }
         return respReturn;
@@ -57,7 +58,7 @@ public class UserHelper {
         if (tempUser != null) {
             respToReturn = Response.ok(tempUser, MediaType.APPLICATION_JSON).build();
         } else {
-            respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+            respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
         return respToReturn;
     }
@@ -77,7 +78,7 @@ public class UserHelper {
             dao.delete(tempUser);
             respToReturn = Response.ok().build();
         } else {
-            respToReturn = Response.status(Response.Status.NO_CONTENT).build();
+            respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
         return respToReturn;
     }

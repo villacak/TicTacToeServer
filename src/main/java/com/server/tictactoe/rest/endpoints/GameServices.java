@@ -2,6 +2,7 @@ package com.server.tictactoe.rest.endpoints;
 
 import com.server.tictactoe.Constants;
 import com.server.tictactoe.business.GameHelper;
+import com.server.tictactoe.utils.CreateErrorResponse;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -28,10 +29,10 @@ public class GameServices {
                 final GameHelper gameHelper = new GameHelper();
                 resp = gameHelper.createGameFirstIfNeeded(name);
             } else {
-                resp = Response.status(Response.Status.BAD_REQUEST).build();
+                resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
             }
         } catch (Exception e) {
-            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            resp = CreateErrorResponse.createErrorResponse(Response.Status.INTERNAL_SERVER_ERROR);
         }
         return resp;
     }
@@ -56,10 +57,10 @@ public class GameServices {
                 final GameHelper gameHelper = new GameHelper();
                 resp = gameHelper.userPlay(game, selection, position);
             } else {
-                resp = Response.status(Response.Status.BAD_REQUEST).build();
+                resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
             }
         } catch (Exception e) {
-            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            resp = CreateErrorResponse.createErrorResponse(Response.Status.INTERNAL_SERVER_ERROR);
         }
         return resp;
     }
@@ -86,10 +87,10 @@ public class GameServices {
                 final GameHelper gameHelper = new GameHelper();
                 resp = gameHelper.checkGame(game, selection, position);
             } else {
-                resp = Response.status(Response.Status.BAD_REQUEST).build();
+                resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
             }
         } catch (Exception e) {
-            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            resp = CreateErrorResponse.createErrorResponse(Response.Status.INTERNAL_SERVER_ERROR);
         }
         return resp;
     }
@@ -104,9 +105,11 @@ public class GameServices {
             if (name != null && !name.equals(Constants.EMPTY)) {
                 final GameHelper gameHelper = new GameHelper();
                 resp = gameHelper.finalizeGame(name);
+            } else {
+                resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
             }
         }  catch (Exception e) {
-            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            resp = CreateErrorResponse.createErrorResponse(Response.Status.INTERNAL_SERVER_ERROR);
         }
         return resp;
     }

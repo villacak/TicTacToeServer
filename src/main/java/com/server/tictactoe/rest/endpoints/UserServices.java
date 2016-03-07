@@ -2,6 +2,7 @@ package com.server.tictactoe.rest.endpoints;
 
 import com.server.tictactoe.Constants;
 import com.server.tictactoe.business.UserHelper;
+import com.server.tictactoe.utils.CreateErrorResponse;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -30,10 +31,10 @@ public class UserServices {
                 final UserHelper userHelper = new UserHelper();
                 resp = userHelper.createUser(name);
             } else {
-                resp = Response.status(Response.Status.BAD_REQUEST).build();
+                resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
             }
         } catch (Exception e) {
-            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            resp = CreateErrorResponse.createErrorResponse(Response.Status.INTERNAL_SERVER_ERROR);
         }
         return resp;
     }
@@ -54,10 +55,10 @@ public class UserServices {
                 final UserHelper userHelper = new UserHelper();
                 resp = userHelper.retrieveUser(name);
             } else {
-                resp = Response.status(Response.Status.BAD_REQUEST).build();
+                resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
             }
         } catch (Exception e) {
-            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            resp = CreateErrorResponse.createErrorResponse(Response.Status.INTERNAL_SERVER_ERROR);
         }
         return resp;
     }
@@ -73,10 +74,10 @@ public class UserServices {
                 final UserHelper userHelper = new UserHelper();
                 resp = userHelper.deleteUser(name);
             } else {
-                resp = Response.status(Response.Status.BAD_REQUEST).build();
+                resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
             }
         } catch (Exception e) {
-            resp = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            resp = CreateErrorResponse.createErrorResponse(Response.Status.INTERNAL_SERVER_ERROR);
         }
         return resp;
     }
