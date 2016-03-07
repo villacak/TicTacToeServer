@@ -21,6 +21,30 @@ import java.util.List;
  */
 public class GameHelper {
 
+    private final int FIRST_PLAYER = 1;
+    private final int SECOND_PLAYER = 2;
+
+    /**
+     * Retrive the very first game with one player only - mean the player is awaiting
+     * @return
+     * @throws Exception
+     */
+    private GamesEntity getGameEntityForGameAlreadyCreated(final String userName) throws Exception {
+        final GamesDAO gamesDAO = new GamesDAO();
+        final GamesEntity entitySelectedO = gamesDAO.findCreatedGames(Constants.O_SELECTION);
+        final GamesEntity entitySelectedX = gamesDAO.findCreatedGames(Constants.X_SELECTION);
+
+        GamesEntity entityToReturn = null;
+        if (entitySelectedO == null && entitySelectedX != null) {
+            final int game = entitySelectedX.getGame();
+            entityToReturn = createABrandNewGame(userName, Constants.O_SELECTION, game, SECOND_PLAYER);
+        } else if (entitySelectedO != null && entitySelectedX == null) {
+            final int game = entitySelectedO.getGame();
+            entityToReturn = createABrandNewGame(userName, Constants.X_SELECTION, game, FIRST_PLAYER);
+        }
+        return entityToReturn;
+    }
+
 
     /**
      * Create a new game
@@ -34,26 +58,10 @@ public class GameHelper {
 
         GamesEntity gamesEntity = getGameEntityForGameAlreadyCreated(userName);
         if (gamesEntity == null) {
-            gamesEntity = createABrandNewGame(userName, Constants.X_SELECTION, 0);
-            respToReturn = Response.ok(gamesEntity, MediaType.APPLICATION_JSON).build();
+            gamesEntity = createABrandNewGame(userName, Constants.X_SELECTION, 0, FIRST_PLAYER);
         }
+        respToReturn = Response.ok(gamesEntity, MediaType.APPLICATION_JSON).build();
         return respToReturn;
-    }
-
-
-    /**
-     * Retrive the very first game with one player only - mean the player is awaiting
-     * @return
-     * @throws Exception
-     */
-    private GamesEntity getGameEntityForGameAlreadyCreated(final String userName) throws Exception {
-        final GamesDAO gamesDAO = new GamesDAO();
-        GamesEntity entitySelected = gamesDAO.findCreatedGames(Constants.O_SELECTION);
-        if (entitySelected != null) {
-            final int game = entitySelected.getGame();
-            entitySelected = createABrandNewGame(userName, Constants.O_SELECTION, entitySelected.getGame());
-        }
-        return entitySelected;
     }
 
 
@@ -64,7 +72,7 @@ public class GameHelper {
      * @return
      * @throws Exception
      */
-    private GamesEntity createABrandNewGame(final String userName, final String selection, final int game) throws Exception {
+    private GamesEntity createABrandNewGame(final String userName, final String selection, final int game, final int playersNumber) throws Exception {
         final UserHelper userHelper = new UserHelper();
         final UserEntity userEntity = userHelper.retrieveUserIfAlreadyExist(userName);
         GamesEntity gamesEntity = null;
@@ -76,6 +84,7 @@ public class GameHelper {
             gamesEntity = new GamesEntity();
             gamesEntity.setPlayerXOrO(selection);
             gamesEntity.setUser(userEntity);
+            gamesEntity.setPlayersNumber(playersNumber);
 
             final GamesDAO gamesDAO = new GamesDAO();
             final int gameId = gamesDAO.save(gamesEntity);
