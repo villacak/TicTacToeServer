@@ -35,13 +35,13 @@ public class ErrorToReturn {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("ErrorToReturn{")
-                .append("status='")
-                .append(status).append("'")
-                .append(", message='")
+        sb.append("{\"ErrorToReturn\": {")
+                .append("\"status\": \"")
+                .append(status).append("\"")
+                .append(", \"message\": \"")
                 .append(message)
-                .append("'")
-                .append("}");
+                .append("\"")
+                .append("}}");
         return sb.toString();
     }
 }

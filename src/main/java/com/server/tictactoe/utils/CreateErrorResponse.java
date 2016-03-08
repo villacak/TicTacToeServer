@@ -14,7 +14,7 @@ public class CreateErrorResponse {
 
     private static final String OBJECT_KEY = "ErrorToReturn";
 
-    private static final String EXCEPTION_TEMPLATE = "{\"ErrorToReturn\" : {\"status\": \"%s\", \"message\": \"%s\"}}";
+    private static final String EXCEPTION_TEMPLATE = "{\"ErrorToReturn\" : {\"status\": \"%1$s\", \"message\": \"%2$s\"}}";
 
     public static Response createErrorResponse(final Response.Status statusCode) {
         Response resp = null;
