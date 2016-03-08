@@ -21,11 +21,9 @@ public class CreateErrorResponse {
         try {
             final ErrorToReturn errorObject =
                     new ErrorToReturn(statusCode.getStatusCode() + Constants.EMPTY, statusCode.getReasonPhrase());
-            final ObjectMapper mapper = new ObjectMapper();
-            final String jsonString = mapper.writeValueAsString(errorObject);
-            final JSONObject json = new JSONObject();
-            json.append(OBJECT_KEY, jsonString);
-            resp = Response.status(statusCode).entity(json.toString()).build();
+            final String msg = String.format(EXCEPTION_TEMPLATE, statusCode.getStatusCode(),
+                    statusCode.getReasonPhrase());
+            resp = Response.status(statusCode).entity(msg).build();
         } catch (Exception e) {
             final String msg = String.format(EXCEPTION_TEMPLATE, Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
                     Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase());

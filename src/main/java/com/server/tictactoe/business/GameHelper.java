@@ -254,7 +254,7 @@ public class GameHelper {
                 respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
             }
         } else {
-            respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
+            respToReturn = Response.ok("{\"delete\": {\"nothingToDelete\":\"true\"}}", MediaType.APPLICATION_JSON_TYPE).build();
         }
         return respToReturn;
     }
