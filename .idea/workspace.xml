@@ -8,8 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f17959d1-4656-4c55-bb72-0d752c8f02b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/utils/CreateErrorResponse.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/utils/CreateErrorResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java" />
     </list>
     <ignored path="TicTacToeServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +88,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="106" column="37" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="37" />
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -137,11 +136,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameHelper.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6286408">
-              <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -157,12 +156,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GamesDAO.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GamesDAO.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="200" column="23" selection-start-line="200" selection-start-column="23" selection-end-line="200" selection-end-column="23" />
-              <folding />
+            <state vertical-scroll-proportion="0.41504854">
+              <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+              <folding>
+                <element signature="e#6755#6756#0" expanded="true" />
+                <element signature="e#6800#6801#0" expanded="true" />
+                <element signature="e#6862#6863#0" expanded="true" />
+                <element signature="e#6911#6912#0" expanded="true" />
+                <element signature="e#6973#6974#0" expanded="true" />
+                <element signature="e#7022#7023#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -229,7 +235,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java" />
         <option value="$PROJECT_DIR$/supportFiles/sql/sql_scripts.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/PlayEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/GamesEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/UserServices.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java" />
@@ -237,6 +242,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/ErrorToReturn.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/utils/CreateErrorResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java" />
       </list>
     </option>
   </component>
@@ -328,6 +334,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -568,9 +577,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1094,7 +1100,9 @@
       <workItem from="1457273383382" duration="1675000" />
       <workItem from="1457276706840" duration="12947000" />
       <workItem from="1457399253224" duration="2506000" />
-      <workItem from="1457405089842" duration="1854000" />
+      <workItem from="1457405089842" duration="1879000" />
+      <workItem from="1457489105857" duration="2387000" />
+      <workItem from="1457574993953" duration="1337000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1452709071712</created>
@@ -1276,11 +1284,23 @@
       <option name="project" value="LOCAL" />
       <updated>1457403960678</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Update response for when there is nothing to delete">
+      <created>1457407004134</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1457407004134</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Update delete to success, as it's a message that doesn't have any payload to be parsed and it's not an error">
+      <created>1457489272332</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1457489272332</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131739000" />
+    <option name="totallyTimeSpent" value="135488000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
@@ -1327,8 +1347,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Some persistence helpers" />
-    <MESSAGE value="Adding entities, support files, web.xml and updated persistence.xml" />
     <MESSAGE value="Added application, entities with relationship, endpoints are still empy" />
     <MESSAGE value="DAO's" />
     <MESSAGE value="UserHelper and User endpoint" />
@@ -1352,7 +1370,9 @@
     <MESSAGE value="Update GameHelper" />
     <MESSAGE value="Created a new ErrorToReturn POJO;&#10;Created a new CreateErrorResponse as ios needs a json response." />
     <MESSAGE value="Update ErrorToReturn and CreateErrorResponse" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update ErrorToReturn and CreateErrorResponse" />
+    <MESSAGE value="Update response for when there is nothing to delete" />
+    <MESSAGE value="Update delete to success, as it's a message that doesn't have any payload to be parsed and it's not an error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update delete to success, as it's a message that doesn't have any payload to be parsed and it's not an error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1376,13 +1396,31 @@
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/utils/CreateErrorResponse.java</url>
-          <line>31</line>
+          <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java</url>
+          <line>83</line>
           <properties />
-          <option name="timeStamp" value="44" />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java</url>
+          <line>181</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java</url>
+          <line>176</line>
+          <properties />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java</url>
+          <line>172</line>
+          <properties />
+          <option name="timeStamp" value="58" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="47" />
+      <option name="time" value="59" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1488,7 +1526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="177" column="56" selection-start-line="177" selection-start-column="56" selection-end-line="177" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1503,7 +1540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="177" column="56" selection-start-line="177" selection-start-column="56" selection-end-line="177" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1518,7 +1554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1582,7 +1617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="68" selection-start-line="2" selection-start-column="68" selection-end-line="2" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1597,7 +1631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.65281177">
           <caret line="263" column="0" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1702,14 +1735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="200" column="23" selection-start-line="200" selection-start-column="23" selection-end-line="200" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/GamesEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1734,14 +1759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="106" column="37" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/ErrorToReturn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1760,11 +1777,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6286408">
-          <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/GamesDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41504854">
+          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding>
+            <element signature="e#6755#6756#0" expanded="true" />
+            <element signature="e#6800#6801#0" expanded="true" />
+            <element signature="e#6862#6863#0" expanded="true" />
+            <element signature="e#6911#6912#0" expanded="true" />
+            <element signature="e#6973#6974#0" expanded="true" />
+            <element signature="e#7022#7023#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

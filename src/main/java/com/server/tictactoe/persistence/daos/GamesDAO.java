@@ -173,7 +173,12 @@ public class GamesDAO {
             final String queryString = "select model from GamesEntity model where model." + propertyName
                     + "= :propertyValue";
             final Query query = getEntityManager().createQuery(queryString);
-            query.setParameter("propertyValue", value);
+            if (propertyName.equals(NAME)) {
+                query.setParameter("propertyValue", value);
+            } else {
+                int valueAsInt  = Integer.parseInt((String) value);
+                query.setParameter("propertyValue", valueAsInt);
+            }
             return query.getResultList();
         } catch (RuntimeException re) {
             emHelper.log("find by property name failed", Level.SEVERE, re);
