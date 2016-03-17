@@ -8,9 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f17959d1-4656-4c55-bb72-0d752c8f02b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToeServer.iml" afterPath="$PROJECT_DIR$/TicTacToeServer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/DummyService.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/DummyService.java" />
     </list>
     <ignored path="TicTacToeServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1014,7 +1011,7 @@
       <workItem from="1457748779622" duration="612000" />
       <workItem from="1458000165578" duration="3446000" />
       <workItem from="1458173955689" duration="4406000" />
-      <workItem from="1458182117792" duration="3792000" />
+      <workItem from="1458182117792" duration="3982000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1452709071712</created>
@@ -1244,11 +1241,17 @@
       <option name="project" value="LOCAL" />
       <updated>1458178537802</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Several updates">
+      <created>1458186498009</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1458186498009</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148113000" />
+    <option name="totallyTimeSpent" value="148303000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="0" />
@@ -1295,7 +1298,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Updating Games helper class" />
     <MESSAGE value="Updating several classes" />
     <MESSAGE value="Checking for winner, I still don't know if I do this in the app or in the server" />
     <MESSAGE value="New pojo, and GameHelper improved." />
@@ -1320,7 +1322,8 @@
     <MESSAGE value="context.xml updated" />
     <MESSAGE value="sql_scripts updated" />
     <MESSAGE value="DAOs updated to contain rollback in case of error." />
-    <option name="LAST_COMMIT_MESSAGE" value="DAOs updated to contain rollback in case of error." />
+    <MESSAGE value="Several updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Several updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
