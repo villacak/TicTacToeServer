@@ -63,6 +63,7 @@ public class GamesDAO {
             idToReturn = entity.getIdgames();
             emHelper.log("save successful", Level.INFO, null);
         } catch (RuntimeException re) {
+            getEntityManager().getTransaction().rollback();
             emHelper.log("save failed", Level.SEVERE, re);
             throw re;
         }
@@ -97,6 +98,7 @@ public class GamesDAO {
             getEntityManager().getTransaction().commit();
             emHelper.log("delete successful", Level.INFO, null);
         } catch (RuntimeException re) {
+            getEntityManager().getTransaction().rollback();
             emHelper.log("delete failed", Level.SEVERE, re);
             throw re;
         }
@@ -134,6 +136,7 @@ public class GamesDAO {
             getEntityManager().getTransaction().commit();
             emHelper.log("update successful", Level.INFO, null);
         } catch (RuntimeException re) {
+            getEntityManager().getTransaction().rollback();
             emHelper.log("update failed", Level.SEVERE, re);
             throw re;
         }

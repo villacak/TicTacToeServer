@@ -52,13 +52,13 @@ public class UserDAO {
         emHelper.log("saving User instance", Level.INFO, null);
         int idToReturn = 0;
         try {
-            final EntityManager em = getEntityManager();
-            em.getTransaction().begin();
-            em.persist(entity);
-            em.getTransaction().commit();
+            getEntityManager().getTransaction().begin();
+            getEntityManager().persist(entity);
+            getEntityManager().getTransaction().commit();
             idToReturn = entity.getIduser();
             emHelper.log("save successful", Level.INFO, null);
         } catch (RuntimeException re) {
+            getEntityManager().getTransaction().rollback();
             emHelper.log("save failed", Level.SEVERE, re);
             throw re;
         }
@@ -93,6 +93,7 @@ public class UserDAO {
             getEntityManager().getTransaction().commit();
             emHelper.log("delete successful", Level.INFO, null);
         } catch (RuntimeException re) {
+            getEntityManager().getTransaction().rollback();
             emHelper.log("delete failed", Level.SEVERE, re);
             throw re;
         }
@@ -130,6 +131,7 @@ public class UserDAO {
             emHelper.log("update successful", Level.INFO, null);
             return result;
         } catch (RuntimeException re) {
+            getEntityManager().getTransaction().rollback();
             emHelper.log("update failed", Level.SEVERE, re);
             throw re;
         }
