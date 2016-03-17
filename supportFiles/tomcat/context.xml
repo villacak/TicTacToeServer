@@ -32,7 +32,10 @@
      <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
      -->
     
-    <!-- Configure Tomcat Data Source for MySQL DB -->
-    <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="jdbc/ttt_ds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/tictactoe_schema" username="root"/>
+    <!-- Configure Tomcat Data Source for local MySQL DB  -->
+    <!-- <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="jdbc/ttt_ds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/tictactoe_schema" username="root"/> -->
+
+    <!-- Configure Tomcat Data Source for remote MySQL DB  -->
+    <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxIdle="30" maxTotal="100" maxWaitMillis="10000" name="jdbc/ttt_ds" password="rootroot" type="javax.sql.DataSource" url="jdbc:mysql://tictactoe.cuqhaqjsgnvy.us-west-2.rds.amazonaws.com:3306/tictactoe_schema" username="root"/>
     
 </Context>
