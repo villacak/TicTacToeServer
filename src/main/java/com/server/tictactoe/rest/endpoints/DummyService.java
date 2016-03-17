@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 public class DummyService {
 
     @GET
-    @Path("/call")
+    @Path("/call/{name}")
     @Produces("*/*")
     public Response userDetails(@PathParam("name") final String name) {
         Response resp = Response.ok("Dummy returning").build();
