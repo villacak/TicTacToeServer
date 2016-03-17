@@ -4,7 +4,7 @@ CREATE SCHEMA `tictactoe_schema` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode
 -- Create user table
 CREATE TABLE user
 (
-    iduser INT(11) PRIMARY KEY NOT NULL,
+    iduser INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     user_name VARCHAR(60),
     stats_wins INT(11),
     stats_loses INT(11),
@@ -15,7 +15,7 @@ CREATE TABLE user
 -- Create games table
 CREATE TABLE games
 (
-    idgames INT(11) PRIMARY KEY NOT NULL,
+    idgames INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     player_x_or_o VARCHAR(1),
     player INT(11),
     won_x_or_y VARCHAR(1),
@@ -30,7 +30,7 @@ CREATE INDEX player_idx ON games (player);
 -- Create play table
 CREATE TABLE play
 (
-    playid INT(11) PRIMARY KEY NOT NULL,
+    playid INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     game INT(11),
     position INT(11),
     CONSTRAINT fk_games FOREIGN KEY (game) REFERENCES games (idgames)
