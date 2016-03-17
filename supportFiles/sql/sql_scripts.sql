@@ -20,10 +20,12 @@ CREATE TABLE games
     player INT(11),
     won_x_or_y VARCHAR(1),
     game INT(11),
+    players_number INT(11),
     CONSTRAINT fk_user FOREIGN KEY (player) REFERENCES user (iduser)
 );
 CREATE INDEX game_idx ON games (game);
 CREATE INDEX player_idx ON games (player);
+
 
 -- Create play table
 CREATE TABLE play
