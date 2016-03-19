@@ -113,4 +113,22 @@ public class GameServices {
         }
         return resp;
     }
+
+    @PUT
+    @Path("/inGame/{name}/{isInGame}")
+    @Produces("application/json")
+    public Response inGame(@PathParam("name") String name, @PathParam("isInGame") final boolean isInGame) {
+        Response resp = null;
+        try {
+            if (name != null && !name.equals(Constants.EMPTY)) {
+                final GameHelper gameHelper = new GameHelper();
+                resp = gameHelper.isPLayerInGame(name, isInGame);
+            } else {
+                resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
+            }
+        }  catch (Exception e) {
+            resp = CreateErrorResponse.createErrorResponse(Response.Status.INTERNAL_SERVER_ERROR);
+        }
+        return resp;
+    }
 }

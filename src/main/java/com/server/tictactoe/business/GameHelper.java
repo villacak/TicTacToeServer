@@ -25,6 +25,7 @@ public class GameHelper {
     private final int ZERO_PLAYERS = 0;
     private final int FIRST_PLAYER = 1;
     private final int SECOND_PLAYER = 2;
+    private final int PLAYER_NOT_ONLINE = 99;
 
 
     /**
@@ -255,6 +256,33 @@ public class GameHelper {
             }
         } else {
             respToReturn = Response.ok("{\"success\": {\"nothingToDelete\":\"true\"}}", MediaType.APPLICATION_JSON_TYPE).build();
+        }
+        return respToReturn;
+    }
+
+
+    /**
+     * Method that set user as in game, that may be playing or on hold for someone also go to play
+     * as also set the user not in play when the user leave the game
+     *
+     * @param name
+     * @param isInGame
+     * @return
+     * @throws Exception
+     */
+    public Response isPLayerInGame(final String name, final boolean isInGame) throws Exception {
+        Response respToReturn = null;
+        final GamesDAO gamesDAO = new GamesDAO();
+        final List<GamesEntity> gamesEntities = gamesDAO.findByName(name);
+        if (gamesEntities != null && gamesEntities.size() > 0) {
+            for (GamesEntity gameTemp : gamesEntities) {
+                if (!isInGame) {
+                    gameTemp.setPlayersNumber(PLAYER_NOT_ONLINE);
+                } else {
+                    gameTemp.setPlayersNumber(ZERO_PLAYERS);
+                }
+                gamesDAO.update(gameTemp);
+            }
         }
         return respToReturn;
     }
