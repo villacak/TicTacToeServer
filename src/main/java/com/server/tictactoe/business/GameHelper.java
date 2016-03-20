@@ -68,6 +68,7 @@ public class GameHelper {
             if (gamesEntity == null) {
                 gamesEntity = createABrandNewGame(userName, Constants.X_SELECTION, 0, ZERO_PLAYERS);
             }
+
             respToReturn = Response.ok(gamesEntity, MediaType.APPLICATION_JSON).build();
         }
         return respToReturn;
@@ -103,6 +104,7 @@ public class GameHelper {
             } else {
                 gamesEntity.setGame(game);
             }
+            gamesDAO.update(gamesEntity);
         }
         return gamesEntity;
     }
@@ -129,7 +131,7 @@ public class GameHelper {
 
             final PlayDAO playDAO = new PlayDAO();
             playDAO.save(playEntity);
-            respToReturn = Response.ok().build();
+            respToReturn = Response.ok(playEntity).build();
         } else {
             respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
