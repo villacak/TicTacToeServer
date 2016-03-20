@@ -8,8 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f17959d1-4656-4c55-bb72-0d752c8f02b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/supportFiles/tomcat/context.xml" afterPath="$PROJECT_DIR$/supportFiles/tomcat/context.xml" />
     </list>
     <ignored path="TicTacToeServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,18 +87,28 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-168.03847">
               <caret line="257" column="44" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameServices.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameServices.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18811882">
+            <state vertical-scroll-proportion="0.0">
               <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="context.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/supportFiles/tomcat/context.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8748159">
+              <caret line="38" column="162" selection-start-line="38" selection-start-column="162" selection-end-line="38" selection-end-column="162" />
               <folding />
             </state>
           </provider>
@@ -167,7 +176,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/ErrorToReturn.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/utils/CreateErrorResponse.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/supportFiles/tomcat/context.xml" />
         <option value="$PROJECT_DIR$/supportFiles/sql/sql_scripts.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java" />
@@ -176,6 +184,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/DummyService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java" />
+        <option value="$PROJECT_DIR$/supportFiles/tomcat/tomcat-users.xml" />
+        <option value="$PROJECT_DIR$/supportFiles/tomcat/context.xml" />
       </list>
     </option>
   </component>
@@ -1159,7 +1169,7 @@
       <workItem from="1458265276964" duration="529000" />
       <workItem from="1458351315746" duration="21000" />
       <workItem from="1458354618886" duration="1794000" />
-      <workItem from="1458434062086" duration="1197000" />
+      <workItem from="1458434062086" duration="2133000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1452709071712</created>
@@ -1425,23 +1435,31 @@
       <option name="project" value="LOCAL" />
       <updated>1458422451534</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Remove unused params from check service">
+      <created>1458436908195</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1458436908195</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152147000" />
+    <option name="totallyTimeSpent" value="153083000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287858" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39972714" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287858" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2883598" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32742155" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19097222" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24171951" sideWeight="0.44065484" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1452,14 +1470,12 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983629" sideWeight="0.49713877" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983629" sideWeight="0.49713877" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287858" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32742155" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287858" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1476,7 +1492,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Checking for winner, I still don't know if I do this in the app or in the server" />
     <MESSAGE value="New pojo, and GameHelper improved." />
     <MESSAGE value="changing place from META-INF/persistence.xml" />
     <MESSAGE value="Added manifest.mf, project isn't recognizing the persistence.xml for some reason" />
@@ -1501,7 +1516,8 @@
     <MESSAGE value="DAOs updated to contain rollback in case of error." />
     <MESSAGE value="Several updates" />
     <MESSAGE value="New service, that shouldn't be used at moment" />
-    <option name="LAST_COMMIT_MESSAGE" value="New service, that shouldn't be used at moment" />
+    <MESSAGE value="Remove unused params from check service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unused params from check service" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1688,13 +1704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supportFiles/tomcat/tomcat-users.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35">
-          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/CheckGame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1869,14 +1878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supportFiles/tomcat/context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8276878">
-          <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/DummyService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3134752">
@@ -1887,7 +1888,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-168.03847">
           <caret line="257" column="44" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="44" />
           <folding />
         </state>
@@ -1901,10 +1902,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/supportFiles/tomcat/tomcat-users.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8379971">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18811882">
+        <state vertical-scroll-proportion="0.0">
           <caret line="70" column="18" selection-start-line="70" selection-start-column="18" selection-end-line="70" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supportFiles/tomcat/context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8748159">
+          <caret line="38" column="162" selection-start-line="38" selection-start-column="162" selection-end-line="38" selection-end-column="162" />
           <folding />
         </state>
       </provider>
