@@ -69,23 +69,17 @@ public class GameServices {
     /**
      * Check and retrieve if the other player has played
      * @param game
-     * @param selection
-     * @param position
      * @return
      */
     @GET
     @Path("/check")
     @Produces("application/json")
-    public Response checkPlay(@QueryParam("game") final String game,
-                              @QueryParam("selection") final String selection,
-                              @QueryParam("position") final String position) {
+    public Response checkPlay(@QueryParam("game") final String game) {
         Response resp = null;
         try {
-            if ((game != null && !game.equals(Constants.EMPTY)) &&
-               (selection != null && !selection.equals(Constants.EMPTY)) &&
-               (position != null && !position.equals(Constants.EMPTY))) {
+            if (game != null && !game.equals(Constants.EMPTY)) {
                 final GameHelper gameHelper = new GameHelper();
-                resp = gameHelper.checkGame(game, selection, position);
+                resp = gameHelper.checkGame(game);
             } else {
                 resp = CreateErrorResponse.createErrorResponse(Response.Status.BAD_REQUEST);
             }

@@ -108,6 +108,14 @@ public class GameHelper {
     }
 
 
+    /**
+     * User play
+     * @param game
+     * @param selection
+     * @param position
+     * @return
+     * @throws Exception
+     */
     public Response userPlay(final String game, final String selection, final String position) throws Exception {
         Response respToReturn = null;
         final GamesDAO gamesDAO = new GamesDAO();
@@ -132,12 +140,10 @@ public class GameHelper {
     /**
      * Check the game
      * @param game
-     * @param selection
-     * @param position
      * @return
      * @throws Exception
      */
-    public Response checkGame(final String game, final String selection, final String position) throws Exception {
+    public Response checkGame(final String game) throws Exception {
         Response respToReturn = null;
         final GamesDAO gamesDAO = new GamesDAO();
         final List<GamesEntity> gamesEntity = gamesDAO.findByGame(game);
