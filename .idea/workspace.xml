@@ -8,8 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f17959d1-4656-4c55-bb72-0d752c8f02b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java" />
     </list>
     <ignored path="TicTacToeServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -98,8 +96,8 @@
       <file leaf-file-name="GameHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53753024">
-              <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.37288135">
+              <caret line="191" column="13" selection-start-line="191" selection-start-column="13" selection-end-line="191" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -1163,13 +1161,7 @@
       <workItem from="1458434062086" duration="2852000" />
       <workItem from="1458439532155" duration="2299000" />
       <workItem from="1458497022525" duration="9224000" />
-      <workItem from="1458574538028" duration="7837000" />
-    </task>
-    <task id="LOCAL-00001" summary="Initial Commit">
-      <created>1452709071712</created>
-      <option name="number" value="00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1452709071712</updated>
+      <workItem from="1458574538028" duration="8407000" />
     </task>
     <task id="LOCAL-00002" summary="Some persistence helpers">
       <created>1452710784135</created>
@@ -1459,11 +1451,17 @@
       <option name="project" value="LOCAL" />
       <updated>1458528637845</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Game check working 100% now;&#10;updates to PlayDAO">
+      <created>1458582424667</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1458582424670</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173162000" />
+    <option name="totallyTimeSpent" value="173732000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
@@ -1510,7 +1508,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Data Source now working" />
     <MESSAGE value="Persistin working, need update all DAOs" />
     <MESSAGE value="Update DAOs" />
     <MESSAGE value="Final service implemented, the play" />
@@ -1535,7 +1532,8 @@
     <MESSAGE value="Fix for missing game in the right placa" />
     <MESSAGE value="Several fixes and update on the DB as on the ORM" />
     <MESSAGE value="Several updates;&#10;GameHelper.checkGame still need work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Several updates;&#10;GameHelper.checkGame still need work" />
+    <MESSAGE value="Game check working 100% now;&#10;updates to PlayDAO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game check working 100% now;&#10;updates to PlayDAO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1962,8 +1960,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53753024">
-          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.37288135">
+          <caret line="191" column="13" selection-start-line="191" selection-start-column="13" selection-end-line="191" selection-end-column="13" />
           <folding />
         </state>
       </provider>
