@@ -1,5 +1,6 @@
 package com.server.tictactoe.persistence.daos;
 
+import com.server.tictactoe.persistence.entities.GamesEntity;
 import com.server.tictactoe.persistence.entities.PlayEntity;
 import com.server.tictactoe.persistence.helper.EntityManagerHelper;
 
@@ -16,6 +17,7 @@ public class PlayDAO {
     public static final String ID = "idgames";
     public static final String USER = "userId";
     public static final String GAME = "game";
+    public static final String GAME_ID = "gameId";
 
 
     private EntityManagerHelper emHelper;
@@ -172,8 +174,15 @@ public class PlayDAO {
             final String queryString = "select model from PlayEntity model where model." + propertyName
                     + "= :propertyValue order by model.playid";
             final Query query = getEntityManager().createQuery(queryString);
-            int valueAsInt  = Integer.parseInt((String) value);
-            query.setParameter("propertyValue", valueAsInt);
+
+            if (propertyName.equals(USER) || propertyName.equals(GAME_ID)) {
+                int valueAsInt = Integer.parseInt((String) value);
+                query.setParameter("propertyValue", valueAsInt);
+            } else if (propertyName.equals(ID)) {
+                query.setParameter("propertyValue", (String) value);
+            } else if (propertyName.equals(GAME)) {
+                query.setParameter("propertyValue", (GamesEntity) value);
+            }
             return query.getResultList();
         } catch (RuntimeException re) {
             emHelper.log("find by property name failed", Level.SEVERE, re);
@@ -191,6 +200,10 @@ public class PlayDAO {
 
     public List<PlayEntity> findByGame(final Object game) {
         return findByProperty(GAME, game);
+    }
+
+    public List<PlayEntity> findByGameId(final Object gameId) {
+        return findByProperty(GAME_ID, gameId);
     }
 
     /**

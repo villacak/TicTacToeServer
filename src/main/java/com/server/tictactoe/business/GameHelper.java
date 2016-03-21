@@ -15,6 +15,7 @@ import org.codehaus.jettison.json.JSONObject;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -165,23 +166,36 @@ public class GameHelper {
         final GamesDAO gamesDAO = new GamesDAO();
         final PlayDAO playDAO = new PlayDAO();
         final List<GamesEntity> gamesEntities = gamesDAO.findByGame(game);
-        final List<PlayEntity> playEntities = playDAO.findByGame(game);
-        if (gamesEntities != null && gamesEntities.size() > 0) {
+        final List<PlayEntity> plays = gamesEntities.get(0).getPlays();
+        if ((gamesEntities != null && gamesEntities.size() > 0) &&
+                (plays != null && plays.size() > 0)) {
             boolean hasWinner = false;
-            final GamesEntity tempEntityForcheck = gamesEntities.get(gamesEntities.size() - 1);
+
+            GamesEntity lastPlayed = null;
+            final PlayEntity lastPlay = plays.get(plays.size() - 1);
+            final int userId = lastPlay.getUserId();
+            for(GamesEntity tempGameEntity: gamesEntities) {
+                if (userId == tempGameEntity.getUser().getIduser()) {
+                    lastPlayed = tempGameEntity;
+                    break;
+                }
+            }
+
+            // Check what GamesEntity user did the last play
             final CheckGame checkGame = new CheckGame();
-            checkGame.setPlayNumber(gamesEntities.size());
-            checkGame.setGamesEntity(tempEntityForcheck);
+            checkGame.setPlayNumber(lastPlayed.getPlayersNumber());
+            checkGame.setGamesEntity(lastPlayed);
 
             // We don't need to check when its impossible to have a winner
-            if (gamesEntities.size() >= Constants.MINIMUM_VALUE_TO_START_CHECKING) {
-                hasWinner = checkIfHasAWinner(tempEntityForcheck);
+            if (plays.size() >= Constants.MINIMUM_VALUE_TO_START_CHECKING) {
+                hasWinner = checkIfHasAWinner(lastPlayed);
             }
             checkGame.setWinner(hasWinner);
 
             final ObjectMapper mapper = new ObjectMapper();
             final String checkGameAsString = mapper.writeValueAsString(checkGame);
             final JSONObject json = new JSONObject(checkGameAsString);
+            lastPlayed = null;
 
             respToReturn = Response.ok(json.toString(), MediaType.APPLICATION_JSON_TYPE).build();
         } else {
@@ -206,8 +220,8 @@ public class GameHelper {
      */
     private boolean checkIfHasAWinner(final GamesEntity gamesEntity) {
         boolean hasWiner = false;
-        final List<PlayEntity> plays = gamesEntity.getPlays();
-        int p0 = 0;
+        final List<PlayEntity> plays = getPlaysFromLastPlayerPLay(gamesEntity.getPlays(), gamesEntity.getUser().getIduser());
+
         int p1 = 0;
         int p2 = 0;
         int p3 = 0;
@@ -216,36 +230,55 @@ public class GameHelper {
         int p6 = 0;
         int p7 = 0;
         int p8 = 0;
+        int p9 = 0;
 
         for (PlayEntity play: plays) {
             final int playPos = play.getPosition();
-            if (playPos == 0) {
-                p0 = 1;
-            } else if (playPos == 1) {
-                p1 = 2;
+            if (playPos == 1) {
+                p1 = 1;
             } else if (playPos == 2) {
-                p1 = 3;
+                p2 = 2;
             } else if (playPos == 3) {
-                p1 = 4;
+                p3 = 3;
             } else if (playPos == 4) {
-                p1 = 5;
+                p4 = 4;
             } else if (playPos == 5) {
-                p1 = 6;
+                p5 = 5;
             } else if (playPos == 6) {
-                p1 = 7;
+                p6 = 6;
             } else if (playPos == 7) {
-                p1 = 8;
+                p7 = 7;
             } else if (playPos == 8) {
-                p1 = 9;
+                p8 = 8;
+            } else if (playPos == 9) {
+                p9 = 9;
             }
         }
-        if ((p0 > 0 && p1 > 0 && p2 > 0) || (p3 > 0 && p4 > 0 && p5 > 0) || (p6 > 0 && p7 > 0 && p8 > 0) ||
-            (p0 > 0 && p3 > 0 && p6 > 0) || (p1 > 0 && p4 > 0 && p7 > 0) || (p2 > 0 && p5 > 0 && p8 > 0) ||
-            (p0 > 0 && p4 > 0 && p6 > 8) || (p2 > 0 && p4 > 0 && p6 > 0)) {
+        if ((p1 > 0 && p2 > 0 && p3 > 0) || (p4 > 0 && p5 > 0 && p6 > 0) || (p7 > 0 && p8 > 0 && p9 > 0) ||
+            (p1 > 0 && p4 > 0 && p7 > 0) || (p2 > 0 && p5 > 0 && p8 > 0) || (p3 > 0 && p6 > 0 && p9 > 0) ||
+            (p1 > 0 && p5 > 0 && p9 > 0) || (p3 > 0 && p5 > 0 && p6 > 7)) {
             hasWiner = true;
         }
 
         return hasWiner;
+    }
+
+
+    /**
+     * Filter plays from the player
+     * @param allPlays
+     * @param userId
+     * @return
+     */
+    private List<PlayEntity> getPlaysFromLastPlayerPLay(final List<PlayEntity> allPlays, int userId) {
+        final List<PlayEntity> playsFromUser = new ArrayList<>();
+        for (PlayEntity tempPlay: allPlays) {
+            final int tempUserId = tempPlay.getUserId();
+            if (tempUserId == userId) {
+                playsFromUser.add(tempPlay);
+            }
+        }
+        return playsFromUser;
     }
 
 
