@@ -14,7 +14,8 @@ import java.util.logging.Level;
 public class PlayDAO {
 
     public static final String ID = "idgames";
-    public static final String WON = "wonXOrY";
+    public static final String USER = "userId";
+    public static final String GAME = "game";
 
 
     private EntityManagerHelper emHelper;
@@ -169,9 +170,10 @@ public class PlayDAO {
         emHelper.log("finding User instance with property: " + propertyName + ", value: " + value, Level.INFO, null);
         try {
             final String queryString = "select model from PlayEntity model where model." + propertyName
-                    + "= :propertyValue";
+                    + "= :propertyValue order by model.playid";
             final Query query = getEntityManager().createQuery(queryString);
-            query.setParameter("propertyValue", value);
+            int valueAsInt  = Integer.parseInt((String) value);
+            query.setParameter("propertyValue", valueAsInt);
             return query.getResultList();
         } catch (RuntimeException re) {
             emHelper.log("find by property name failed", Level.SEVERE, re);
@@ -183,8 +185,12 @@ public class PlayDAO {
         return findByProperty(ID, id);
     }
 
-    public List<PlayEntity> findByName(final Object name) {
-        return findByProperty(WON, name);
+    public List<PlayEntity> findByUser(final Object userId) {
+        return findByProperty(USER, userId);
+    }
+
+    public List<PlayEntity> findByGame(final Object game) {
+        return findByProperty(GAME, game);
     }
 
     /**

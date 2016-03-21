@@ -14,6 +14,7 @@ public class PlayEntity {
     private GamesEntity game;
     private int playid;
     private int position;
+    private int userId;
 
     @JsonBackReference
     @ManyToOne
@@ -48,4 +49,16 @@ public class PlayEntity {
     public void setPosition(final int position) {
         this.position = position;
     }
+
+
+    @Basic
+    @Column(name = "userId", nullable = true)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(final int userId) {
+        this.userId = userId;
+    }
+
 }

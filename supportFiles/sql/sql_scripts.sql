@@ -33,6 +33,7 @@ CREATE TABLE play
     playid INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     game INT(11),
     position INT(11),
+    userId INT(11),
     CONSTRAINT fk_games FOREIGN KEY (game) REFERENCES games (game)
 );
 CREATE INDEX fk_games_idx ON play (game);

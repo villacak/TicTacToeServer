@@ -139,6 +139,7 @@ public class GameHelper {
                     playEntity.setGame(tempGameEntity);
                     playEntity.setPosition(Integer.valueOf(position));
                     playEntity.setPlayid(tempGameEntity.getUser().getIduser());
+                    playEntity.setUserId(tempGameEntity.getUser().getIduser());
                     break;
                 }
             }
@@ -162,16 +163,18 @@ public class GameHelper {
     public Response checkGame(final String game) throws Exception {
         Response respToReturn = null;
         final GamesDAO gamesDAO = new GamesDAO();
-        final List<GamesEntity> gamesEntity = gamesDAO.findByGame(game);
-        if (gamesEntity != null && gamesEntity.size() > 0) {
+        final PlayDAO playDAO = new PlayDAO();
+        final List<GamesEntity> gamesEntities = gamesDAO.findByGame(game);
+        final List<PlayEntity> playEntities = playDAO.findByGame(game);
+        if (gamesEntities != null && gamesEntities.size() > 0) {
             boolean hasWinner = false;
-            final GamesEntity tempEntityForcheck = gamesEntity.get(gamesEntity.size() - 1);
+            final GamesEntity tempEntityForcheck = gamesEntities.get(gamesEntities.size() - 1);
             final CheckGame checkGame = new CheckGame();
-            checkGame.setPlayNumber(gamesEntity.size());
+            checkGame.setPlayNumber(gamesEntities.size());
             checkGame.setGamesEntity(tempEntityForcheck);
 
             // We don't need to check when its impossible to have a winner
-            if (gamesEntity.size() >= Constants.MINIMUM_VALUE_TO_START_CHECKING) {
+            if (gamesEntities.size() >= Constants.MINIMUM_VALUE_TO_START_CHECKING) {
                 hasWinner = checkIfHasAWinner(tempEntityForcheck);
             }
             checkGame.setWinner(hasWinner);
