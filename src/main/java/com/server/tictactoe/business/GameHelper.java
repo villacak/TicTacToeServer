@@ -62,6 +62,16 @@ public class GameHelper {
             } else {
                 respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.CONFLICT);
             }
+        } else if (entitySelectedO != null && entitySelectedX != null) {
+            if (!entitySelectedO.getUser().getUserName().equals(userName)) {
+                final int game = entitySelectedX.getGame();
+                gamesEntity = createABrandNewGame(userName, Constants.X_SELECTION, game, FIRST_PLAYER);
+                entitySelectedO.setPlayersNumber(SECOND_PLAYER);
+                final GamesDAO dao = new GamesDAO();
+                dao.update(entitySelectedO);
+            } else {
+                respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.CONFLICT);
+            }
         }
 
         if (respToReturn == null) {
@@ -124,14 +134,18 @@ public class GameHelper {
         final List<GamesEntity> gamesEntity = gamesDAO.findByGame(game);
         if (gamesEntity != null && gamesEntity.size() > 0) {
             final PlayEntity playEntity = new PlayEntity();
-            final GamesEntity tempGameEntity = gamesEntity.get(gamesEntity.size() - 1);
-            playEntity.setGame(tempGameEntity);
-            playEntity.setPosition(Integer.valueOf(position));
-            playEntity.setPlayid(tempGameEntity.getUser().getIduser());
+            for (GamesEntity tempGameEntity: gamesEntity) {
+                if (tempGameEntity.getPlayerXOrO().equals(selection)) {
+                    playEntity.setGame(tempGameEntity);
+                    playEntity.setPosition(Integer.valueOf(position));
+                    playEntity.setPlayid(tempGameEntity.getUser().getIduser());
+                    break;
+                }
+            }
 
             final PlayDAO playDAO = new PlayDAO();
             playDAO.save(playEntity);
-            respToReturn = Response.ok(playEntity).build();
+            respToReturn = Response.ok().build();
         } else {
             respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
@@ -166,7 +180,7 @@ public class GameHelper {
             final String checkGameAsString = mapper.writeValueAsString(checkGame);
             final JSONObject json = new JSONObject(checkGameAsString);
 
-            respToReturn = Response.ok(json, MediaType.APPLICATION_JSON_TYPE).build();
+            respToReturn = Response.ok(json.toString(), MediaType.APPLICATION_JSON_TYPE).build();
         } else {
             respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }

@@ -17,7 +17,7 @@ public class PlayEntity {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="game", referencedColumnName = "idgames")
+    @JoinColumn(name="game", referencedColumnName = "game")
     public GamesEntity getGame() {
         return game;
     }
@@ -25,6 +25,7 @@ public class PlayEntity {
     public void setGame(final GamesEntity game) {
         this.game = game;
     }
+
 
     @Id
     @Column(name = "playid", nullable = false)
