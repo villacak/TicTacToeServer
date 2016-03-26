@@ -8,6 +8,7 @@ import com.server.tictactoe.persistence.daos.PlayDAO;
 import com.server.tictactoe.persistence.daos.UserDAO;
 import com.server.tictactoe.persistence.entities.GamesEntity;
 import com.server.tictactoe.persistence.entities.PlayEntity;
+import com.server.tictactoe.persistence.entities.PlayPlainEntity;
 import com.server.tictactoe.persistence.entities.UserEntity;
 import com.server.tictactoe.utils.CreateErrorResponse;
 import com.server.tictactoe.utils.DateUtils;
@@ -166,13 +167,13 @@ public class GameHelper {
         final GamesDAO gamesDAO = new GamesDAO();
         final PlayDAO playDAO = new PlayDAO();
         final List<GamesEntity> gamesEntities = gamesDAO.findByGame(game);
-        final List<PlayEntity> plays = gamesEntities.get(0).getPlays();
+        final List<PlayPlainEntity> plays = playDAO.findByGame(game);
         if ((gamesEntities != null && gamesEntities.size() > 0) &&
                 (plays != null && plays.size() > 0)) {
             boolean hasWinner = false;
 
             GamesEntity lastPlayed = null;
-            final PlayEntity lastPlay = plays.get(plays.size() - 1);
+            final PlayPlainEntity lastPlay = plays.get(plays.size() - 1);
             final int userId = lastPlay.getUserId();
             for(GamesEntity tempGameEntity: gamesEntities) {
                 if (userId == tempGameEntity.getUser().getIduser()) {

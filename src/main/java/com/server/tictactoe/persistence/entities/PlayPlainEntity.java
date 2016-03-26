@@ -9,23 +9,21 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "play", schema = "tictactoe_schema")
-@NamedQuery(name="PlayEntity.findAll", query="SELECT c FROM PlayEntity c")
-@NamedNativeQuery(name = "PlayEntity.findAllByGame",
-        query = "SELECT p.playid, p.game, p.position, p.userId FROM tictactoe_schema.play p WHERE playid = ?")
-public class PlayEntity {
-    private GamesEntity game;
+@NamedNativeQuery(name = "PlayPlainEntity.findAllByGame",
+        query = "SELECT p.playid, p.game, p.position, p.userId FROM tictactoe_schema.play p WHERE p.game = ?")
+public class PlayPlainEntity {
+    private int game;
     private int playid;
     private int position;
     private int userId;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name="game", referencedColumnName = "game")
-    public GamesEntity getGame() {
+    @Basic
+    @Column(name="game", nullable = true)
+    public int getGame() {
         return game;
     }
 
-    public void setGame(final GamesEntity game) {
+    public void setGame(final int game) {
         this.game = game;
     }
 

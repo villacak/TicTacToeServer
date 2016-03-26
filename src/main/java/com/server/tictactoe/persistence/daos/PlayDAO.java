@@ -2,6 +2,7 @@ package com.server.tictactoe.persistence.daos;
 
 import com.server.tictactoe.persistence.entities.GamesEntity;
 import com.server.tictactoe.persistence.entities.PlayEntity;
+import com.server.tictactoe.persistence.entities.PlayPlainEntity;
 import com.server.tictactoe.persistence.helper.EntityManagerHelper;
 
 import javax.persistence.EntityManager;
@@ -17,7 +18,6 @@ public class PlayDAO {
     public static final String ID = "idgames";
     public static final String USER = "userId";
     public static final String GAME = "game";
-    public static final String GAME_ID = "gameId";
 
 
     private EntityManagerHelper emHelper;
@@ -175,13 +175,11 @@ public class PlayDAO {
                     + "= :propertyValue order by model.playid";
             final Query query = getEntityManager().createQuery(queryString);
 
-            if (propertyName.equals(USER) || propertyName.equals(GAME_ID)) {
+            if (propertyName.equals(USER) || propertyName.equals(GAME)) {
                 int valueAsInt = Integer.parseInt((String) value);
                 query.setParameter("propertyValue", valueAsInt);
             } else if (propertyName.equals(ID)) {
                 query.setParameter("propertyValue", (String) value);
-            } else if (propertyName.equals(GAME)) {
-                query.setParameter("propertyValue", (GamesEntity) value);
             }
             return query.getResultList();
         } catch (RuntimeException re) {
@@ -198,13 +196,20 @@ public class PlayDAO {
         return findByProperty(USER, userId);
     }
 
-    public List<PlayEntity> findByGame(final Object game) {
-        return findByProperty(GAME, game);
+    public List<PlayPlainEntity> findByGame(final String game) {
+        emHelper.log("finding User instance with property: game, value: " + game, Level.INFO, null);
+        final int gameInt = Integer.parseInt(game);
+        final int gameId = 1;
+        try {
+            final Query query = getEntityManager().createNamedQuery("PlayPlainEntity.findAllByGame", PlayPlainEntity.class);
+            query.setParameter(gameId, gameInt);
+            return query.getResultList();
+        } catch (RuntimeException re) {
+            emHelper.log("find by property name failed", Level.SEVERE, re);
+            throw re;
+        }
     }
 
-    public List<PlayEntity> findByGameId(final Object gameId) {
-        return findByProperty(GAME_ID, gameId);
-    }
 
     /**
      * Find all User entities.
