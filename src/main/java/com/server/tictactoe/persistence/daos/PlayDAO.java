@@ -196,13 +196,19 @@ public class PlayDAO {
         return findByProperty(USER, userId);
     }
 
+    /**
+     * Find from play table the the row based on the game number
+     *
+     * @param game
+     * @return
+     */
     public List<PlayPlainEntity> findByGame(final String game) {
         emHelper.log("finding User instance with property: game, value: " + game, Level.INFO, null);
         final int gameInt = Integer.parseInt(game);
         final int gameId = 1;
         try {
-            final Query query = getEntityManager().createNamedQuery("PlayPlainEntity.findAllByGame", PlayPlainEntity.class);
-            query.setParameter(gameId, gameInt);
+            final Query query = getEntityManager().createNamedQuery("PlayPlainEntity.findAllByGame");
+            query.setParameter(GAME, gameInt);
             return query.getResultList();
         } catch (RuntimeException re) {
             emHelper.log("find by property name failed", Level.SEVERE, re);

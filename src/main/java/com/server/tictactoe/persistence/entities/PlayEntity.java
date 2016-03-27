@@ -10,8 +10,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "play", schema = "tictactoe_schema")
 @NamedQuery(name="PlayEntity.findAll", query="SELECT c FROM PlayEntity c")
-@NamedNativeQuery(name = "PlayEntity.findAllByGame",
-        query = "SELECT p.playid, p.game, p.position, p.userId FROM tictactoe_schema.play p WHERE playid = ?")
 public class PlayEntity {
     private GamesEntity game;
     private int playid;
