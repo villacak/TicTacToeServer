@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f17959d1-4656-4c55-bb72-0d752c8f02b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/PlayEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/PlayEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/PlayPlainEntity.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/PlayPlainEntity.java" />
     </list>
     <ignored path="TicTacToeServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1188,14 +1185,7 @@
       <workItem from="1458782055759" duration="420000" />
       <workItem from="1458783329907" duration="435000" />
       <workItem from="1459000067095" duration="5324000" />
-      <workItem from="1459040895520" duration="617000" />
-    </task>
-    <task id="LOCAL-00004" summary="Adding entities, support files, web.xml and updated persistence.xml">
-      <created>1452744102505</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1452744102505</updated>
+      <workItem from="1459040895520" duration="704000" />
     </task>
     <task id="LOCAL-00005" summary="Added application, entities with relationship, endpoints are still empy">
       <created>1452917019536</created>
@@ -1533,11 +1523,18 @@
       <option name="project" value="LOCAL" />
       <updated>1459005770857</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Check game finaly fixed">
+      <created>1459041523298</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1459041523298</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180625000" />
+    <option name="totallyTimeSpent" value="180712000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
@@ -1562,7 +1559,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983629" sideWeight="0.49713877" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3983629" sideWeight="0.49713877" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1584,7 +1581,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Update DAOs" />
     <MESSAGE value="Final service implemented, the play" />
     <MESSAGE value="Final methods implementes. Now will be testing then integration tests with the app." />
     <MESSAGE value="Update to return the user when user already exist" />
@@ -1609,7 +1605,8 @@
     <MESSAGE value="Several updates;&#10;GameHelper.checkGame still need work" />
     <MESSAGE value="Game check working 100% now;&#10;updates to PlayDAO" />
     <MESSAGE value="Game check working 100% now;&#10;updates to PlayDAO;&#10;Added a secont entity without any relationship and running a native query." />
-    <option name="LAST_COMMIT_MESSAGE" value="Game check working 100% now;&#10;updates to PlayDAO;&#10;Added a secont entity without any relationship and running a native query." />
+    <MESSAGE value="Check game finaly fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Check game finaly fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1639,22 +1636,10 @@
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java</url>
-          <line>190</line>
-          <properties />
-          <option name="timeStamp" value="77" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java</url>
           <line>178</line>
           <properties />
           <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java</url>
-          <line>175</line>
-          <properties />
-          <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java</url>
