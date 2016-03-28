@@ -61,4 +61,13 @@ public class PlayEntity {
         this.userId = userId;
     }
 
+//    @Override
+//    public String toString() {
+//        final StringBuilder playToString = new StringBuilder("PlayEntity{")
+//                .append("game=").append(game)
+//                .append(", playid=").append(playid)
+//                .append(", position=").append(position)
+//                .append(", userId=").append(userId).append('}');
+//        return playToString.toString();
+//    }
 }

@@ -3,6 +3,7 @@ package com.server.tictactoe.business;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.server.tictactoe.Constants;
 import com.server.tictactoe.business.pojos.CheckGame;
+import com.server.tictactoe.business.pojos.GamesPojo;
 import com.server.tictactoe.persistence.daos.GamesDAO;
 import com.server.tictactoe.persistence.daos.PlayDAO;
 import com.server.tictactoe.persistence.daos.UserDAO;
@@ -12,6 +13,7 @@ import com.server.tictactoe.persistence.entities.PlayPlainEntity;
 import com.server.tictactoe.persistence.entities.UserEntity;
 import com.server.tictactoe.utils.CreateErrorResponse;
 import com.server.tictactoe.utils.DateUtils;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 
 import javax.ws.rs.core.MediaType;
@@ -163,6 +165,10 @@ public class GameHelper {
      * @throws Exception
      */
     public Response checkGame(final String game) throws Exception {
+        final String gamesEntityStr = "gamesEntity";
+        final String playEntityStr = "playEntity";
+        final String userEntityStr = "userEntity";
+
         Response respToReturn = null;
         final GamesDAO gamesDAO = new GamesDAO();
         final PlayDAO playDAO = new PlayDAO();
@@ -183,9 +189,10 @@ public class GameHelper {
             }
 
             // Check what GamesEntity user did the last play
+            final GamesPojo lastPlayedPojo = getGamePojo(lastPlayed);
             final CheckGame checkGame = new CheckGame();
             checkGame.setPlayNumber(lastPlayed.getPlayersNumber());
-            checkGame.setGamesEntity(lastPlayed);
+            checkGame.setGamesEntity(lastPlayedPojo);
 
             // We don't need to check when its impossible to have a winner
             if (plays.size() >= Constants.MINIMUM_VALUE_TO_START_CHECKING) {
@@ -195,16 +202,34 @@ public class GameHelper {
 
             final ObjectMapper mapper = new ObjectMapper();
             final String checkGameAsString = mapper.writeValueAsString(checkGame);
-            final JSONObject json = new JSONObject(checkGameAsString);
             lastPlayed = null;
 
-            respToReturn = Response.ok(json.toString(), MediaType.APPLICATION_JSON_TYPE).build();
+            respToReturn = Response.ok(checkGameAsString, MediaType.APPLICATION_JSON_TYPE).build();
         } else {
             respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
         return respToReturn;
     }
 
+
+    /**
+     * Copy data from the entity to the pojo as the entity when generating json
+     * exclude the instance variables that are part of relationship
+     *
+     * @param gamesEntityTemp
+     * @return
+     */
+    private GamesPojo getGamePojo(final GamesEntity gamesEntityTemp) {
+        final GamesPojo pojo  = new GamesPojo();
+        pojo.setIdgames(gamesEntityTemp.getIdgames());
+        pojo.setGame(gamesEntityTemp.getGame());
+        pojo.setPlayersNumber(gamesEntityTemp.getPlayersNumber());
+        pojo.setPlayerXOrO(gamesEntityTemp.getPlayerXOrO());
+        pojo.setPlays(gamesEntityTemp.getPlays());
+        pojo.setUser(gamesEntityTemp.getUser());
+        pojo.setWonXOrY(gamesEntityTemp.getWonXOrY());
+        return pojo;
+    }
 
     /**
      * Check if has a winner

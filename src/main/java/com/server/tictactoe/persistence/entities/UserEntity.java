@@ -91,4 +91,6 @@ public class UserEntity {
     public void setGames(final List<GamesEntity> games) {
         this.games = games;
     }
+
+
 }

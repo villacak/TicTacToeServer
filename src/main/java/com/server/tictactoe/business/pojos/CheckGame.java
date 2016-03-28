@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class CheckGame implements Serializable {
 
     private int playNumber;
-    private GamesEntity gamesEntity;
+    private GamesPojo gamesEntity;
     private boolean isWinner;
 
 
@@ -22,11 +22,11 @@ public class CheckGame implements Serializable {
         this.playNumber = playNumber;
     }
 
-    public GamesEntity getGamesEntity() {
+    public GamesPojo getGamesEntity() {
         return gamesEntity;
     }
 
-    public void setGamesEntity(GamesEntity gamesEntity) {
+    public void setGamesEntity(GamesPojo gamesEntity) {
         this.gamesEntity = gamesEntity;
     }
 

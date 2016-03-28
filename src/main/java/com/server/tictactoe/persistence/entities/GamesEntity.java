@@ -97,4 +97,17 @@ public class GamesEntity {
     public void setPlayersNumber(final int playersNumber) {
         this.playersNumber = playersNumber;
     }
+
+//    @Override
+//    public String toString() {
+//        final StringBuilder gamesToString = new StringBuilder("GamesEntity{")
+//                .append("user=").append(user)
+//                .append(", plays=").append(plays)
+//                .append(", idgames=").append(idgames)
+//                .append(", game=").append(game)
+//                .append(", playerXOrO='").append(playerXOrO).append('\'')
+//                .append(", wonXOrY='").append(wonXOrY).append('\'')
+//                .append(", playersNumber=").append(playersNumber).append('}');
+//        return gamesToString.toString();
+//    }
 }
