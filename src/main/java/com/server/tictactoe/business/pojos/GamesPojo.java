@@ -2,6 +2,7 @@ package com.server.tictactoe.business.pojos;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.server.tictactoe.persistence.entities.PlayEntity;
+import com.server.tictactoe.persistence.entities.PlayPlainEntity;
 import com.server.tictactoe.persistence.entities.UserEntity;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class GamesPojo {
     private UserEntity user;
-    private List<PlayEntity> plays;
+    private List<PlayPlainEntity> plays;
     private int idgames;
     private int game;
     private String playerXOrO;
@@ -26,10 +27,10 @@ public class GamesPojo {
         this.user = user;
     }
 
-    public List<PlayEntity> getPlays() {
+    public List<PlayPlainEntity> getPlays() {
         return plays;
     }
-    public void setPlays(final List<PlayEntity> plays) {
+    public void setPlays(final List<PlayPlainEntity> plays) {
         this.plays = plays;
     }
 

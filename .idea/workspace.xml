@@ -11,6 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f17959d1-4656-4c55-bb72-0d752c8f02b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/GamesPojo.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/GamesPojo.java" />
     </list>
     <ignored path="TicTacToeServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +91,7 @@
       <file leaf-file-name="GameServices.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
+            <state relative-caret-position="1173">
               <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
               <folding />
             </state>
@@ -99,8 +101,8 @@
       <file leaf-file-name="GameHelper.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-709">
-              <caret line="185" column="48" selection-start-line="185" selection-start-column="48" selection-end-line="185" selection-end-column="48" />
+            <state relative-caret-position="221">
+              <caret line="191" column="76" selection-start-line="191" selection-start-column="76" selection-end-line="191" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -109,7 +111,7 @@
       <file leaf-file-name="CheckGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/CheckGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
+            <state relative-caret-position="340">
               <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
               <folding>
                 <element signature="e#620#621#0" expanded="true" />
@@ -142,8 +144,8 @@
       <file leaf-file-name="GamesPojo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/GamesPojo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -220,8 +222,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/GamesEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/PlayEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/PlayPlainEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/GamesPojo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/CheckGame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/GamesPojo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java" />
       </list>
     </option>
@@ -314,6 +316,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -708,9 +711,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1267,14 +1269,8 @@
       <workItem from="1459040895520" duration="1025000" />
       <workItem from="1459043995575" duration="512000" />
       <workItem from="1459119530099" duration="5856000" />
-      <workItem from="1459131625123" duration="837000" />
-    </task>
-    <task id="LOCAL-00007" summary="UserHelper and User endpoint">
-      <created>1453001327988</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1453001327988</updated>
+      <workItem from="1459131625123" duration="848000" />
+      <workItem from="1459209603694" duration="1032000" />
     </task>
     <task id="LOCAL-00008" summary="UserHelper and User endpoint completed">
       <created>1453002342628</created>
@@ -1612,11 +1608,18 @@
       <option name="project" value="LOCAL" />
       <updated>1459129712376</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Check game finaly fixed">
+      <created>1459132537300</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1459132537301</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188238000" />
+    <option name="totallyTimeSpent" value="189281000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
@@ -2027,14 +2030,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.7.0/jackson-annotations-2.7.0.jar!/com/fasterxml/jackson/annotation/JsonBackReference.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2066,14 +2061,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/GamesPojo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/entities/GamesEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1360">
@@ -2084,15 +2071,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/rest/endpoints/GameServices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
+        <state relative-caret-position="1173">
           <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/persistence/daos/PlayDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/CheckGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="340">
           <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
           <folding>
             <element signature="e#620#621#0" expanded="true" />
@@ -2101,10 +2096,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/pojos/GamesPojo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/tictactoe/business/GameHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-709">
-          <caret line="185" column="48" selection-start-line="185" selection-start-column="48" selection-end-line="185" selection-end-column="48" />
+        <state relative-caret-position="221">
+          <caret line="191" column="76" selection-start-line="191" selection-start-column="76" selection-end-line="191" selection-end-column="76" />
           <folding />
         </state>
       </provider>

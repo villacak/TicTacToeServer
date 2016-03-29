@@ -189,7 +189,7 @@ public class GameHelper {
             }
 
             // Check what GamesEntity user did the last play
-            final GamesPojo lastPlayedPojo = getGamePojo(lastPlayed);
+            final GamesPojo lastPlayedPojo = getGamePojo(lastPlayed, plays);
             final CheckGame checkGame = new CheckGame();
             checkGame.setPlayNumber(lastPlayed.getPlayersNumber());
             checkGame.setGamesEntity(lastPlayedPojo);
@@ -219,13 +219,13 @@ public class GameHelper {
      * @param gamesEntityTemp
      * @return
      */
-    private GamesPojo getGamePojo(final GamesEntity gamesEntityTemp) {
+    private GamesPojo getGamePojo(final GamesEntity gamesEntityTemp, final List<PlayPlainEntity> playsPlain) {
         final GamesPojo pojo  = new GamesPojo();
         pojo.setIdgames(gamesEntityTemp.getIdgames());
         pojo.setGame(gamesEntityTemp.getGame());
         pojo.setPlayersNumber(gamesEntityTemp.getPlayersNumber());
         pojo.setPlayerXOrO(gamesEntityTemp.getPlayerXOrO());
-        pojo.setPlays(gamesEntityTemp.getPlays());
+        pojo.setPlays(playsPlain);
         pojo.setUser(gamesEntityTemp.getUser());
         pojo.setWonXOrY(gamesEntityTemp.getWonXOrY());
         return pojo;
