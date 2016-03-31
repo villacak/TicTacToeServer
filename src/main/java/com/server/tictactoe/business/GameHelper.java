@@ -196,7 +196,7 @@ public class GameHelper {
 
             // We don't need to check when its impossible to have a winner
             if (plays.size() >= Constants.MINIMUM_VALUE_TO_START_CHECKING) {
-                hasWinner = checkIfHasAWinner(lastPlayed);
+                hasWinner = checkIfHasAWinner(lastPlayedPojo);
             }
             checkGame.setWinner(hasWinner);
 
@@ -244,9 +244,9 @@ public class GameHelper {
      *
      * @return
      */
-    private boolean checkIfHasAWinner(final GamesEntity gamesEntity) {
+    private boolean checkIfHasAWinner(final GamesPojo gamesPojo) {
         boolean hasWiner = false;
-        final List<PlayEntity> plays = getPlaysFromLastPlayerPLay(gamesEntity.getPlays(), gamesEntity.getUser().getIduser());
+        final List<PlayPlainEntity> plays = getPlaysFromLastPlayerPLay(gamesPojo.getPlays(), gamesPojo.getUser().getIduser());
 
         int p1 = 0;
         int p2 = 0;
@@ -258,7 +258,7 @@ public class GameHelper {
         int p8 = 0;
         int p9 = 0;
 
-        for (PlayEntity play: plays) {
+        for (PlayPlainEntity play: plays) {
             final int playPos = play.getPosition();
             if (playPos == 1) {
                 p1 = 1;
@@ -296,9 +296,9 @@ public class GameHelper {
      * @param userId
      * @return
      */
-    private List<PlayEntity> getPlaysFromLastPlayerPLay(final List<PlayEntity> allPlays, int userId) {
-        final List<PlayEntity> playsFromUser = new ArrayList<>();
-        for (PlayEntity tempPlay: allPlays) {
+    private List<PlayPlainEntity> getPlaysFromLastPlayerPLay(final List<PlayPlainEntity> allPlays, int userId) {
+        final List<PlayPlainEntity> playsFromUser = new ArrayList<>();
+        for (PlayPlainEntity tempPlay: allPlays) {
             final int tempUserId = tempPlay.getUserId();
             if (tempUserId == userId) {
                 playsFromUser.add(tempPlay);
