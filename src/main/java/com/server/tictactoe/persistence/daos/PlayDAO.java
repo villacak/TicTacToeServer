@@ -89,10 +89,26 @@ public class PlayDAO {
      *             when the operation fails
      */
     public void delete(PlayEntity entity) {
-        emHelper.log("deleting User instance", Level.INFO, null);
+        emHelper.log("deleting Play instance", Level.INFO, null);
         try {
             getEntityManager().getTransaction().begin();
             entity = getEntityManager().getReference(PlayEntity.class, entity.getPlayid());
+            getEntityManager().remove(entity);
+            getEntityManager().getTransaction().commit();
+            emHelper.log("delete successful", Level.INFO, null);
+        } catch (RuntimeException re) {
+            getEntityManager().getTransaction().rollback();
+            emHelper.log("delete failed", Level.SEVERE, re);
+            throw re;
+        }
+    }
+
+
+    public void deletePlain(PlayPlainEntity entity) {
+        emHelper.log("deleting PlayPlain instance", Level.INFO, null);
+        try {
+            getEntityManager().getTransaction().begin();
+            entity = getEntityManager().getReference(PlayPlainEntity.class, entity.getPlayid());
             getEntityManager().remove(entity);
             getEntityManager().getTransaction().commit();
             emHelper.log("delete successful", Level.INFO, null);
@@ -205,7 +221,6 @@ public class PlayDAO {
     public List<PlayPlainEntity> findByGame(final String game) {
         emHelper.log("finding User instance with property: game, value: " + game, Level.INFO, null);
         final int gameInt = Integer.parseInt(game);
-        final int gameId = 1;
         try {
             final Query query = getEntityManager().createNamedQuery("PlayPlainEntity.findAllByGame");
             query.setParameter(GAME, gameInt);
@@ -216,6 +231,19 @@ public class PlayDAO {
         }
     }
 
+
+
+    public List<PlayPlainEntity> findByUser(final int userId) {
+        emHelper.log("finding User instance with property: userId, value: " + userId, Level.INFO, null);
+        try {
+            final Query query = getEntityManager().createNamedQuery("PlayPlainEntity.findAllByUser");
+            query.setParameter(USER, userId);
+            return query.getResultList();
+        } catch (RuntimeException re) {
+            emHelper.log("find by property name failed", Level.SEVERE, re);
+            throw re;
+        }
+    }
 
     /**
      * Find all User entities.

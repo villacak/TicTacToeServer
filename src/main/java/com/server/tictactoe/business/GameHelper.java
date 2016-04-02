@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by klausvillaca on 1/17/16.
@@ -316,30 +317,38 @@ public class GameHelper {
      * @throws Exception
      */
     public Response finalizeGame(final String name) throws Exception {
+        final String nothingToDelete = "{\"success\": {\"nothingToDelete\":\"true\"}}";
         Response respToReturn = null;
         final GamesDAO gamesDAO = new GamesDAO();
+        final PlayDAO playDAO = new PlayDAO();
+        final UserDAO userDAO = new UserDAO();
+
+        final List<UserEntity> userList = userDAO.findByName(name);
+        UserEntity user = null;
+        if (userList != null && userList.size() > 0)
+            user = userList.get(0);
+        final List<PlayPlainEntity> playList = playDAO.findByUser(user.getIduser());
         final List<GamesEntity> gamesEntities = gamesDAO.findByName(name);
-        if (gamesEntities != null && gamesEntities.size() > 0) {
-            boolean hasBeenDelete = false;
-            for (GamesEntity entity : gamesEntities) {
-                final List<PlayEntity> gamePlays = entity.getPlays();
-                final PlayDAO playDAO = new PlayDAO();
-                if (gamePlays != null && gamePlays.size() > 0) {
-                    for (PlayEntity play : gamePlays) {
-                        playDAO.delete(play);
+
+        try {
+            if (playList == null && gamesEntities == null) {
+                respToReturn = Response.ok(nothingToDelete, MediaType.APPLICATION_JSON_TYPE).build();
+            } else {
+                if (playList != null && playList.size() > 0) {
+                    for (PlayPlainEntity play : playList) {
+                        playDAO.deletePlain(play);
                     }
                 }
-                gamesDAO.delete(entity);
-                hasBeenDelete = true;
-            }
 
-            if (hasBeenDelete) {
+                if (gamesEntities != null && gamesEntities.size() > 0) {
+                    for (GamesEntity entity : gamesEntities) {
+                        gamesDAO.delete(entity);
+                    }
+                }
                 respToReturn = Response.ok().build();
-            } else {
-                respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
             }
-        } else {
-            respToReturn = Response.ok("{\"success\": {\"nothingToDelete\":\"true\"}}", MediaType.APPLICATION_JSON_TYPE).build();
+        } catch (Exception e) {
+            respToReturn = CreateErrorResponse.createErrorResponse(Response.Status.NO_CONTENT);
         }
         return respToReturn;
     }

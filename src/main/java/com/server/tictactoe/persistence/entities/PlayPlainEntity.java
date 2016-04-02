@@ -9,7 +9,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "play", schema = "tictactoe_schema")
-@NamedQuery(name = "PlayPlainEntity.findAllByGame", query = "SELECT p FROM PlayPlainEntity p WHERE p.game = :game")
+@NamedQueries({
+    @NamedQuery(name = "PlayPlainEntity.findAllByGame", query = "SELECT p FROM PlayPlainEntity p WHERE p.game = :game"),
+    @NamedQuery(name = "PlayPlainEntity.findAllByUser", query = "SELECT p FROM PlayPlainEntity p WHERE p.userId = :userId")
+})
 public class PlayPlainEntity {
     private int game;
     private int playid;
